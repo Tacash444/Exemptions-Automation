@@ -1,0 +1,10 @@
+name: finopsDisksAutoAdmin
+includedPermissions:
+  - compute.disks.list
+  - compute.disks.createSnapshot
+  - compute.disks.delete
+  - compute.zones.list
+  - compute.snapshots.list
+  - compute.snapshots.delete
+  - storage.buckets.get
+  - storage.buckets.list

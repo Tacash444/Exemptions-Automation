@@ -1,0 +1,43 @@
+compute.vmCanIpForward:
+  rules:
+  - allow:
+      all: true
+
+compute.requireShieldedVm:
+  rules:
+  - enforce: false
+
+compute.restrictVpcPeering:
+  rules:
+  - allow:
+      all: true
+
+compute.restrictPartnerInterconnectUsage:
+  rules:
+  - allow:
+      all: true
+
+compute.restrictDedicatedInterconnectUsage:
+  rules:
+  - allow:
+      all: true
+
+compute.allowedVlanAttachmentEncryption:
+  rules:
+  - allow:
+      all: true
+
+compute.vmExternalIpAccess:
+  rules:
+  - allow:
+      all: true
+
+storage.restrictAuthTypes:
+  rules:
+  - allow:
+      all: true
+
+compute.restrictCloudNATUsage:
+  rules:
+  - allow:
+      all: true

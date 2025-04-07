@@ -1,0 +1,12 @@
+name: pkg-dev
+domain: pkg.dev.
+recordsets:
+  A private:
+    records:
+      - 199.36.153.8
+      - 199.36.153.9
+      - 199.36.153.10
+      - 199.36.153.11
+  CNAME *:
+    records:
+      - private.pkg.dev.

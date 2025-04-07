@@ -1,0 +1,18 @@
+name: googleapis-com
+domain: googleapis.com.
+recordsets:
+  A private:
+    records:
+      - 199.36.153.8
+      - 199.36.153.9
+      - 199.36.153.10
+      - 199.36.153.11
+  A restricted:
+    records:
+      - 199.36.153.4
+      - 199.36.153.5
+      - 199.36.153.6
+      - 199.36.153.7
+  CNAME *:
+    records:
+      - private.googleapis.com.

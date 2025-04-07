@@ -1,0 +1,6 @@
+iam_bindings_additive:
+  owner_gcpro_1_group_binding:
+    member: group:hrz-starfi-mam-res-gcpro-1-admins@horizon285.com
+    role: roles/compute.networkAdmin
+ip_cidr_range: 10.5.0.0/24
+region: me-west1

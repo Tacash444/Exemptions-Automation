@@ -1,0 +1,9 @@
+compute.restrictVpcPeering:
+  rules:
+  - allow:
+      all: true
+
+compute.restrictSharedVpcHostProjects:
+  rules:
+  - allow:
+      all: true

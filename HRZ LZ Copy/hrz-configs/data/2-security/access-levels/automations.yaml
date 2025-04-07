@@ -1,0 +1,19 @@
+conditions:
+  - regions:
+    - NL
+  - ip_subnetworks:
+    # portal-dev
+    - 51.16.84.77
+    - 51.17.57.182
+    # portal-prod
+    - 51.17.128.147
+    - 51.84.37.150
+    - 51.17.39.182
+    # Aladin
+    - 51.136.104.8
+
+
+combining_function: OR
+
+perimeters:
+  - automations

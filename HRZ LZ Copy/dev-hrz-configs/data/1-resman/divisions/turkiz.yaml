@@ -1,0 +1,13 @@
+descriptive_name: "Turkiz"
+admin_group: "gcp-organization-admins@dev.horizon285.com"
+
+units:
+  starfish:
+    descriptive_name: "Starfish"
+    admin_group: "gcp-organization-admins@dev.horizon285.com"
+    sub_units:
+      mam: 
+        descriptive_name: "Mam"
+        res_workloads: 
+          
+    

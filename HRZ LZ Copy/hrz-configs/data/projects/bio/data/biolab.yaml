@@ -1,0 +1,42 @@
+name: hrz-biolog-bio-dat-bdata-1
+
+owner:   
+  - group:hrz-biolog-bio-dat-bdata-1-admins@horizon285.com
+
+iam_bindings_additive:
+  biolab-group-viewer:
+    role: roles/viewer
+    member: group:hrz-biolog-bio-res-biolab-0-admins@horizon285.com
+
+labels:
+  application: biolab
+  budget: '5000'
+  createdby: hhakham48-horizon285-com
+  createddate: 04-02-2025
+  costcenter: cavity
+  department: white
+  environment: research
+  expirationdate: none
+  managedby: mmrm
+  owners: hhakham48-horizon285-com
+  project: iron
+  source: manual
+  subdepartment: biolog
+  uuid: hrz-white-biolog-cavity-data-bdata-1
+org_policies: null
+budget:
+  amount: 5000
+  name: hrz-biolog-bio-res-biolab-1-budget
+  filters:
+    include_credits: true
+    notify_default_recipients: false
+  thresholds:
+    current:
+    - 0.5
+    - 0.7
+    - 0.8
+    - 1.0
+    - 1.25
+    forecasted:
+    - 1.0
+    - 1.25

@@ -1,0 +1,16 @@
+from:
+  identities: 
+    - serviceAccount:574658784042-compute@developer.gserviceaccount.com
+    - group:hrz-tree-lon-res-morpheus-1-admins@horizon285.com
+  access_levels: ["*"]
+
+to:
+  resources: ["projects/574658784042"]
+  operations:
+  - service_name: "storage.googleapis.com"
+    method_selectors:
+    - "google.storage.objects.get"
+    - "google.storage.objects.list"
+
+perimeters:
+  - morpheus_research

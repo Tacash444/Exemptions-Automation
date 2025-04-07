@@ -1,0 +1,15 @@
+from:
+  identities:
+    - serviceAccount:service-4338672792@serverless-robot-prod.iam.gserviceaccount.com
+    - serviceAccount:680590473006-compute@developer.gserviceaccount.com
+    - serviceAccount:service-680590473006@serverless-robot-prod.iam.gserviceaccount.com
+    - group:hrz-hippo-ofk-res-maha-1-admins@horizon285.com
+  identity_type: IDENTITY_TYPE_UNSPECIFIED
+  
+to:
+  resources: ["*"]
+  operations:
+    - service_name: "*"
+
+perimeters:
+  - maha_research

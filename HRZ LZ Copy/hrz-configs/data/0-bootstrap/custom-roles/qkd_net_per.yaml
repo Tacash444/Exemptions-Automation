@@ -1,0 +1,11 @@
+name: qkdNet
+includedPermissions:
+  - compute.routers.create
+  - compute.routers.update
+  - compute.networks.updatePolicy
+  - compute.networks.get
+  - compute.networks.list
+  - compute.interconnectAttachments.create
+  - compute.interconnectAttachments.get
+  - compute.interconnectAttachments.list
+  - compute.interconnectAttachments.update

@@ -1,0 +1,65 @@
+firewall_rules: null
+labels:
+  application: qkd
+  budget: 3000
+  costcenter: cavity
+  createdby: hhakham48-horizon285-com
+  createddate: 12-02-2025
+  department: white
+  environment: research
+  expirationdate: none
+  managedby: mmrm
+  owners: hhakham48-horizon285-com
+  project: iron
+  source: manual
+  subdepartment: qkd
+  uuid: hrz-white-dig-cavity-research-qkd
+services:
+- compute.googleapis.com
+iam_bindings_additive:
+  qkd-group-tunnelResourceAccessor:
+    role: roles/iap.tunnelResourceAccessor
+    member: group:hrz-dig-qkd-res-qkd-1-admins@horizon285.com
+  qkd-group-owner:
+    role: roles/owner
+    member: group:hrz-dig-qkd-res-qkd-1-admins@horizon285.com
+  qkd-group-viewer:
+    role: roles/viewer
+    member: group:hrz-dig-qkd-res-qkd-1-readers@horizon285.com
+org_policies: 
+  compute.restrictPartnerInterconnectUsage:
+    rules:
+    - allow:
+        all: true
+  compute.restrictDedicatedInterconnectUsage:
+    rules:
+    - allow:
+        all: true
+  compute.allowedVlanAttachmentEncryption:
+    rules:
+    - allow:
+        all: true
+  compute.vmExternalIpAccess:
+    rules:
+    - allow:
+        all: true
+  storage.restrictAuthTypes:
+    rules:
+    - allow:
+        all: true
+budget:
+  amount: 3000
+  name: hrz-dig-qkd-res-qkd-budget
+  filters:
+    include_credits: true
+    notify_default_recipients: false
+  thresholds:
+    current:
+    - 0.5
+    - 0.7
+    - 0.8
+    - 1.0
+    - 1.25
+    forecasted:
+    - 1.0
+    - 1.25

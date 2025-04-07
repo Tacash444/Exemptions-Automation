@@ -1,0 +1,8 @@
+allow-googleapis:
+  description: Allow googleapis
+  priority: 1100
+  action: allow
+  match:
+    fqdns:
+      - googleapis.com
+      - www.googleapis.com

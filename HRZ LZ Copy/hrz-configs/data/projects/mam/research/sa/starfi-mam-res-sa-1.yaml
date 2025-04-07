@@ -1,0 +1,45 @@
+firewall_rules: null
+labels:
+  application: sa
+  budget: 300
+  costcenter: evasterias
+  createdby: gduani28-horizon285-com
+  createddate: 25-02-2025
+  department: turkiz
+  environment: research
+  expirationdate: none
+  managedby: mmrm
+  owners: gduani28-horizon285-com
+  project: iron
+  source: manual
+  subdepartment: starfish
+  uuid: hrz-turkiz-starfish-evasterias-research-sa-1
+services:
+- compute.googleapis.com
+iam_bindings_additive:
+  sa-group-tunnelResourceAccessor:
+    role: roles/iap.tunnelResourceAccessor
+    member: group:hrz-starfi-mam-res-sa-1-admins@horizon285.com
+  sa-group-owner:
+    role: roles/owner
+    member: group:hrz-starfi-mam-res-sa-1-admins@horizon285.com
+  sa-group-viewer:
+    role: roles/viewer
+    member: group:hrz-starfi-mam-res-sa-1-readers@horizon285.com
+org_policies: null
+budget:
+  amount: 300
+  name: hrz-starfi-mam-res-sa-1-budget
+  filters:
+    include_credits: true
+    notify_default_recipients: false
+  thresholds:
+    current:
+    - 0.5
+    - 0.7
+    - 0.8
+    - 1.0
+    - 1.25
+    forecasted:
+    - 1.0
+    - 1.25

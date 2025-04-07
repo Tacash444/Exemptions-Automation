@@ -1,0 +1,13 @@
+from:
+  identities: 
+    - serviceAccount:service-574658784042@serverless-robot-prod.iam.gserviceaccount.com
+  identity_type: IDENTITY_TYPE_UNSPECIFIED
+
+to:
+  resources: ["projects/574658784042"]
+  operations:
+  - service_name: "artifactregistry.googleapis.com"
+    method_selectors: ["*"] 
+
+perimeters:
+  - morpheus_research

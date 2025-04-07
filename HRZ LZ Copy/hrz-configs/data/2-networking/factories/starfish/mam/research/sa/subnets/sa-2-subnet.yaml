@@ -1,0 +1,6 @@
+iam_bindings_additive:
+  owner_sa_2_group_binding:
+    member: group:hrz-starfi-mam-res-sa-2-admins@horizon285.com
+    role: roles/compute.networkAdmin
+ip_cidr_range: 10.5.16.0/24
+region: me-west1

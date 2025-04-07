@@ -1,0 +1,14 @@
+from:
+  identities: 
+    - serviceAccount:service-785198401493@gcp-sa-logging.iam.gserviceaccount.com
+  identity_type: IDENTITY_TYPE_UNSPECIFIED
+
+to:
+  resources: ["projects/201969375572", "projects/785198401493"]
+  operations:
+  - service_name: "logging.googleapis.com"
+    method_selectors: ["*"]
+
+perimeters:
+  - sa_research
+  - gcpro_research

@@ -1,0 +1,11 @@
+compute.restrictVpcPeering:
+  rules:
+  - allow:
+      all: true
+
+
+cloudscheduler.allowedTargetTypes:
+  rules:
+  - allow:
+      values: 
+      - HTTP

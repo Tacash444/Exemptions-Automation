@@ -1,0 +1,27 @@
+# skip boilerplate check
+#
+# sample subset of useful organization policies, edit to suit requirements
+storage.restrictAuthTypes:
+  rules:
+  - deny:
+      values:
+      - in:ALL_HMAC_SIGNED_REQUESTS
+
+storage.publicAccessPrevention:
+  rules:
+  - enforce: true
+
+storage.uniformBucketLevelAccess:
+  rules:
+  - enforce: true
+
+storage.retentionPolicySeconds:
+  rules:
+  - allow:
+      all: true
+
+
+
+storage.secureHttpTransport:
+  rules:
+  - enforce: true

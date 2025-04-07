@@ -1,0 +1,9 @@
+iam_bindings_additive:
+  owner_elbitpoc_1_group_binding:
+    member: group:hrz-shared-elb-res-elbitpoc-1-admins@horizon285.com
+    role: roles/compute.networkAdmin
+  reader_elbitpoc_1_group_binding:
+    member: group:hrz-shared-elb-res-elbitpoc-1-readers@horizon285.com
+    role: roles/compute.networkViewer
+ip_cidr_range: 10.5.9.0/24
+region: me-west1

@@ -1,0 +1,35 @@
+name: hrzd-starfi-mam-dat-tstdata-1
+
+owner:   
+  - group:gcp-organization-admins@dev.horizon285.com
+
+labels:
+  application: tstdata
+  budget: '500'
+  costcenter: starfish
+  createdby: iraz-dev-horizon285-com
+  createddate: '2024-12-30'
+  department: turkiz
+  environment: data
+  expirationdate: none
+  managedby: mmrm
+  owners: iraz-dev-horizon285-com
+  source: manual
+  subdepartment: mam
+
+budget:
+  amount: '500'
+  filters:
+    include_credits: 'true'
+    notify_default_recipients: 'false'
+  name: hrzd-starfi-mam-dat-tstdata-1
+  thresholds:
+    current:
+    - 0.5
+    - 0.7
+    - 0.8
+    - 1.0
+    - 1.25
+    forecasted:
+    - 1.0
+    - 1.25

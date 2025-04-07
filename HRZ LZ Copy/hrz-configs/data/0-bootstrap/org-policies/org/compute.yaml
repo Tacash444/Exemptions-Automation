@@ -1,0 +1,214 @@
+# skip boilerplate check
+#
+# sample subset of useful organization policies, edit to suit requirements
+compute.requireOsLogin:
+  rules:
+  - enforce: true
+
+compute.requireOsConfig:
+  rules:
+  - enforce: true
+
+# custom.installOpsAgent:
+#   rules:
+#   - enforce: true
+
+#########getting error when trying to apply current state
+# compute.requireVpcFlowLogs:
+#   rules:
+#   - allow:
+#       all: true
+
+
+compute.restrictLoadBalancerCreationForTypes:
+  rules:
+  - allow:
+      values:
+      - in:INTERNAL
+
+compute.skipDefaultNetworkCreation:
+  rules:
+  - enforce: true
+
+compute.vmExternalIpAccess:
+  rules:
+  - deny:
+      all: true
+
+compute.allowedVlanAttachmentEncryption:
+  rules:
+  - allow:
+      values:
+      - IPSEC
+
+#check deny in network folders
+compute.storageResourceUseRestrictions:
+  rules:
+  - allow:
+      all: true
+
+compute.trustedImageProjects:
+  rules:
+  - allow:
+      values:
+      - projects/centos-cloud
+      - projects/debian-cloud
+      - projects/ubuntu-os-cloud
+      - projects/serverless-vpc-access-images
+
+compute.disableGlobalCloudArmorPolicy:
+   rules:
+   - enforce: false
+
+compute.disableGlobalSelfManagedSslCertificate:
+   rules:
+   - enforce: true
+
+compute.disableGlobalSerialPortAccess:
+   rules:
+   - enforce: true
+
+compute.disableGlobalLoadBalancing:
+   rules:
+   - enforce: true
+
+compute.disableGuestAttributesAccess:
+   rules:
+   - enforce: true
+
+compute.disableHybridCloudIpv6:
+   rules:
+   - enforce: true
+
+# compute.disableInstanceDataAccessApis:
+#    rules:
+#    - enforce: false
+
+compute.disableInternetNetworkEndpointGroup:
+   rules:
+   - enforce: true
+
+compute.disablePrivateServiceConnectCreationForConsumers:
+  rules:
+  - allow:
+      all: true
+
+compute.disableSshInBrowser:
+   rules:
+   - enforce: false
+
+compute.restrictNonConfidentialComputing:
+  rules:
+  - allow:
+      all: true
+
+compute.disableNestedVirtualization:
+  rules:
+  - enforce: true
+
+compute.disableSerialPortAccess:
+  rules:
+  - enforce: true
+
+compute.disableSerialPortLogging:
+   rules:
+   - enforce: false
+
+compute.disableVpcExternalIpv6:
+   rules:
+   - enforce: true
+
+compute.disableVpcInternalIpv6:
+   rules:
+   - enforce: true
+
+# compute.enableComplianceMemoryProtection:
+#    rules:
+#    - enforce: false
+
+compute.disableNonFIPSMachineTypes:
+   rules:
+   - enforce: false
+
+compute.restrictPrivateServiceConnectConsumer:
+  rules:
+  - allow:
+      all: true
+
+compute.restrictPrivateServiceConnectProducer:
+  rules:
+  - allow:
+      all: true
+
+compute.restrictCloudNATUsage:
+  rules:
+  - deny:
+      all: true
+
+compute.restrictDedicatedInterconnectUsage:
+  rules:
+  - deny:
+      all: true
+
+compute.restrictPartnerInterconnectUsage:
+  rules:
+  - deny:
+      all: true
+
+compute.restrictProtocolForwardingCreationForTypes:
+  rules:
+  - allow:
+      values:
+      - INTERNAL
+
+compute.restrictSharedVpcBackendServices:
+  rules:
+  - deny:
+      all: true
+
+compute.restrictSharedVpcHostProjects:
+  rules:
+  - allow:
+      all: true
+
+compute.restrictSharedVpcSubnetworks:
+  rules:
+  - allow:
+      all: true
+
+compute.restrictVpcPeering:
+  rules:
+  - deny:
+      all: true
+
+
+compute.restrictVpnPeerIPs:
+  rules:
+  - deny:
+      all: true
+
+compute.restrictXpnProjectLienRemoval:
+  rules:
+  - enforce: true
+
+compute.setNewProjectDefaultToZonalDNSOnly:
+  rules:
+  - enforce: true
+
+compute.vmCanIpForward:
+  rules:
+  - deny:
+      all: true
+
+compute.disableAllIpv6:
+   rules:
+   - enforce: true
+
+compute.sharedReservationsOwnerProjects:
+  rules:
+  - allow:
+      all: true
+
+compute.requireShieldedVm:
+   rules:
+   - enforce: true

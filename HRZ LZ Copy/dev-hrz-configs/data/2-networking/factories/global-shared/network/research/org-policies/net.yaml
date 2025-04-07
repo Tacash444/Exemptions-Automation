@@ -1,0 +1,19 @@
+compute.vmCanIpForward:
+  rules:
+  - allow:
+      all: true
+
+compute.restrictCloudNATUsage:
+  rules:
+  - allow:
+      all: true
+
+
+compute.requireShieldedVm:
+  rules:
+  - enforce: false
+
+compute.restrictVpcPeering:
+  rules:
+  - allow:
+      all: true

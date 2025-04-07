@@ -1,0 +1,18 @@
+from:
+  identities: 
+    - serviceAccount:biodata-1@hrz-biolog-bio-res-biolab-1.iam.gserviceaccount.com
+    - serviceAccount:biodata-1@hrz-biolog-bio-res-biolab-2.iam.gserviceaccount.com
+    - serviceAccount:biodata-1@hrz-biolog-bio-res-biolab-3.iam.gserviceaccount.com
+    - serviceAccount:biodata-1@hrz-biolog-bio-res-biolab-0.iam.gserviceaccount.com
+    - serviceAccount:sa-terraform-backend@hrz-biolog-bio-res-biolab-0.iam.gserviceaccount.com
+  identity_type: IDENTITY_TYPE_UNSPECIFIED
+
+to:
+  resources: ["*"]
+  # service_name is one of the google apis
+  operations:
+  - service_name: "*"
+
+perimeters:
+  - biolab_data
+  - biolab_research

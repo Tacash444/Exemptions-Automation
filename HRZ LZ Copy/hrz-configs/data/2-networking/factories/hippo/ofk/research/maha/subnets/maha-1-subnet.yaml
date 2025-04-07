@@ -1,0 +1,6 @@
+iam_bindings_additive:
+  owner_maha_1_group_binding:
+    member: group:hrz-hippo-ofk-res-maha-1-admins@horizon285.com
+    role: roles/compute.networkAdmin
+ip_cidr_range: 10.5.6.0/24
+region: me-west1

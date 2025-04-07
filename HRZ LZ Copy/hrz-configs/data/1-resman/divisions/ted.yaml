@@ -1,0 +1,12 @@
+descriptive_name: "Ted"
+admin_group: "gcp-organization-admins@horizon285.com"
+
+units:
+  shared:
+    descriptive_name: "Shared"
+    admin_group: "gcp-organization-admins@horizon285.com"
+    integration: false
+    billing_account: "turkiz"
+    sub_units:
+      elb:
+        descriptive_name: "Elbit"

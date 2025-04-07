@@ -1,0 +1,6 @@
+description: URL list 0
+values:
+  - www.example.com
+  - about.example.com
+  - "*.google.com"
+  - "github.com/example-org/*"

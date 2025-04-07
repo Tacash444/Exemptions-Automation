@@ -1,0 +1,12 @@
+from:
+  identities:
+    - group:gcp-organization-admins@horizon285.com
+    - serviceAccount:hrz-prod-github-wif-0@hrz-prod-iac-core-0.iam.gserviceaccount.com
+  access_levels: ["*"]
+to:
+  resources: ["*"]
+  operations:
+  - service_name: "*"
+
+perimeters:
+  - automations

@@ -1,0 +1,59 @@
+budget:
+  amount: '300'
+  filters:
+    include_credits: true
+    notify_default_recipients: false
+  name: hrz-starfi-mam-res-gcpro-1-budget
+  thresholds:
+    current:
+    - 0.5
+    - 0.7
+    - 0.8
+    - 1.0
+    - 1.25
+    forecasted:
+    - 1.0
+    - 1.25
+firewall_rules: null
+iam_bindings_additive:
+  gcpro-group-owner:
+    member: group:hrz-starfi-mam-res-gcpro-1-admins@horizon285.com
+    role: roles/owner
+  gcpro-group-tunnelResourceAccessor:
+    member: group:hrz-starfi-mam-res-gcpro-1-admins@horizon285.com
+    role: roles/iap.tunnelResourceAccessor
+  gcpro-group-viewer:
+    member: group:hrz-starfi-mam-res-gcpro-1-readers@horizon285.com
+    role: roles/viewer
+labels:
+  application: gcp-ro
+  budget: '300'
+  costcenter: evasterias
+  createdby: rcanani18-horizon285-com
+  createddate: 04-02-2025
+  department: turkiz
+  environment: research
+  expirationdate: none
+  managedby: mmrm
+  owners: rcanani18-horizon285-com
+  project: iron
+  source: manual
+  subdepartment: starfish
+  uuid: hrz-turkiz-starfish-evasterias-research-gcpro-1
+org_policies:
+  ainotebooks.accessMode:
+    rules:
+    - allow:
+        all: true
+  ainotebooks.restrictVpcNetworks:
+    rules:
+    - allow:
+        all: true
+robots_iam:
+  roles/compute.networkUser:
+  - aiplatform
+  - notebooks
+services:
+- aiplatform.googleapis.com
+- compute.googleapis.com
+- notebooks.googleapis.com

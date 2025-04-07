@@ -1,0 +1,25 @@
+descriptive_name: "Green"
+admin_group: "gcp-organization-admins@horizon285.com"
+
+units:
+  geo:
+    descriptive_name: "Geo"
+    admin_group: "gcp-organization-admins@horizon285.com"
+    integration: true
+    billing_account: "green"
+    sub_units:
+      map: 
+        descriptive_name: "Map"
+      dig: 
+        descriptive_name: "Dig"
+      sat: 
+        descriptive_name: "Sat"
+        admin_group: "gcp-organization-admins@horizon285.com"
+  tree:
+    descriptive_name: "Tree"
+    admin_group: "gcp-organization-admins@horizon285.com"
+    integration: false
+    billing_account: "green"
+    sub_units:
+      lon:
+        descriptive_name: "Longitude"

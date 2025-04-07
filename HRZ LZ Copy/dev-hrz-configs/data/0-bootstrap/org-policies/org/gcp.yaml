@@ -1,0 +1,194 @@
+resourcemanager.allowedExportDestinations:
+  rules:
+  - deny:
+      all: true
+      
+resourcemanager.allowedImportSources:
+  rules:
+  - deny:
+      all: true
+
+cloudscheduler.allowedTargetTypes:
+  rules:
+  - allow:
+      all: true
+
+meshconfig.allowedVpcscModes:
+  rules:
+  - allow:
+      values:
+      - COMPATIBLE
+
+datastream.disablePublicConnectivity:
+   rules:
+   - enforce: true
+
+ainotebooks.accessMode:
+  rules:
+  - deny:
+      all: true
+
+bigquery.disableBQOmniAWS:
+   rules:
+   - enforce: true
+
+bigquery.disableBQOmniAzure:
+   rules:
+   - enforce: true
+
+clouddeploy.disableServiceLabelGeneration:
+   rules:
+   - enforce: false
+
+gcp.disableCloudLogging:
+   rules:
+   - enforce: false
+
+# spanner.disableMultiRegionInstanceIfNoLocationSelected:
+#    rules:
+#    - enforce: false
+
+iap.requireGlobalIapWebDisabled:
+   rules:
+   - enforce: true
+
+iap.requireRegionalIapWebDisabled:
+   rules:
+   - enforce: false
+
+ainotebooks.disableFileDownloads:
+   rules:
+   - enforce: true
+
+essentialcontacts.disableProjectSecurityContacts:
+   rules:
+   - enforce: true
+
+commerceorggovernance.disablePublicMarketplace:
+   rules:
+   - enforce: true
+
+ainotebooks.disableRootAccess:
+   rules:
+   - enforce: true
+
+appengine.disableCodeDownload:
+   rules:
+   - enforce: true
+
+ainotebooks.disableTerminal:
+   rules:
+   - enforce: true
+
+essentialcontacts.allowedContactDomains:
+  rules:
+  - allow:
+      values:
+      - "@dev.horizon285.com"
+
+# spanner.assuredWorkloadsAdvancedServiceControls:
+#    rules:
+#    - enforce: false
+
+gcp.detailedAuditLoggingMode:
+   rules:
+   - enforce: true
+
+gcp.resourceLocations:
+  rules:
+  - allow:
+      values:
+      - in:me-west1-locations
+
+#########getting error when trying to apply current state
+# cloudkms.minimumDestroyScheduledDuration:
+#   rules:
+#   - allow:
+#       all: true
+
+ainotebooks.requireAutoUpgradeSchedule:
+   rules:
+   - enforce: true
+
+resourcemanager.allowEnabledServicesForExport:
+  rules:
+  - deny:
+      all: true
+
+firestore.requireP4SAforImportExport:
+   rules:
+   - enforce: false
+
+commerceorggovernance.marketplaceServices:
+  rules:
+  - allow:
+      values:
+      - PRIVATE_MARKETPLACE
+
+serviceuser.services:
+  rules:
+  - allow:
+      all: true
+
+ainotebooks.environmentOptions:
+  rules:
+  - deny:
+      all: true
+
+dataform.restrictGitRemotes:
+  rules:
+  - deny:
+      all: true
+
+cloudkms.disableBeforeDestroy:
+   rules:
+   - enforce: true      
+
+ainotebooks.restrictPublicIp:
+   rules:
+   - enforce: true      
+
+gcp.restrictServiceUsage:
+  rules:
+  - allow:
+      all: true
+      
+gcp.restrictTLSVersion:
+  rules:
+  - allow:
+      all: true
+
+ainotebooks.restrictVpcNetworks:
+  rules:
+  - deny:
+      all: true
+
+cloudkms.allowedProtectionLevels:
+  rules:
+  - allow:
+      all: true
+
+gcp.restrictCmekCryptoKeyProjects:
+  rules:
+  - allow:
+      all: true
+
+gcp.restrictNonCmekServices:
+  rules:
+  - allow:
+      all: true      
+
+appengine.runtimeDeploymentExemption:
+  rules:
+  - deny:
+      all: true
+
+pubsub.enforceInTransitRegions:
+   rules:
+   - enforce: true      
+
+resourcemanager.accessBoundaries:
+  rules:
+  - allow:
+      values:
+      - under:organizations/942984779434

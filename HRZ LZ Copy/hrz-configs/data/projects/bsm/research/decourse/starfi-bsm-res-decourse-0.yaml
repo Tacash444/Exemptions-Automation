@@ -1,0 +1,88 @@
+firewall_rules: null
+labels:
+  application: decourse
+  budget: 5800
+  costcenter: oimyakon
+  createdby: tgorka20-horizon285-com
+  createddate: 25-02-2025
+  department: turkiz
+  environment: research
+  expirationdate: 25-07-2025
+  managedby: mmrm
+  owners: tgorka20-horizon285-com
+  project: iron
+  source: manual
+  subdepartment: starfish
+  uuid: hrz-turkiz-starfish-oimyakon-research-decourse-0
+services:
+- aiplatform.googleapis.com
+- notebooks.googleapis.com
+- compute.googleapis.com
+iam_bindings_additive:
+  decourse-group-tunnelResourceAccessor:
+    role: roles/iap.tunnelResourceAccessor
+    member: group:hrz-starfi-bsm-res-decourse-0-admins@horizon285.com
+  decourse-group-owner:
+    role: roles/owner
+    member: group:hrz-starfi-bsm-res-decourse-0-admins@horizon285.com
+  decourse-group-viewer:
+    role: roles/viewer
+    member: group:hrz-starfi-bsm-res-decourse-0-readers@horizon285.com
+org_policies:
+  ainotebooks.restrictVpcNetworks:
+    rules:
+    - allow:
+        all: true
+  ainotebooks.accessMode:
+    rules:
+    - allow:
+        all: true
+  ainotebooks.disableRootAccess:
+    rules:
+      - enforce: false
+  ainotebooks.requireAutoUpgradeSchedule:
+    rules:
+      - enforce: false
+  ainotebooks.environmentOptions:
+    rules:
+    - allow:
+        all: true
+  compute.trustedImageProjects:
+    rules:
+    - allow:
+        all: true
+  compute.disableGuestAttributesAccess:
+    rules:
+      - enforce: false
+  ainotebooks.disableFileDownloads:
+    rules:
+      - enforce: false
+  ainotebooks.disableTerminal:
+    rules:
+      - enforce: false
+  compute.requireShieldedVm:
+   rules:
+   - enforce: false
+
+budget:
+  amount: 5800
+  name: hrz-starfi-bsm-res-decourse-0-budget
+  filters:
+    include_credits: true
+    notify_default_recipients: false
+  thresholds:
+    current:
+    - 0.5
+    - 0.7
+    - 0.8
+    - 1.0
+    - 1.25
+    forecasted:
+    - 1.0
+    - 1.25
+robots_iam:
+  roles/compute.networkUser:
+  - aiplatform
+  - notebooks
+
+

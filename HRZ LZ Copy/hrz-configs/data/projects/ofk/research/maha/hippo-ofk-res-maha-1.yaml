@@ -1,0 +1,51 @@
+firewall_rules: null
+labels:
+  application: maha
+  budget: 1000
+  costcenter: madagascar
+  createdby: ngolovinski56-horizon285-com
+  createddate: 27-02-2025
+  department: gray
+  environment: research
+  expirationdate: none
+  managedby: mmrm
+  owners: ngolovinski56-horizon285-com
+  project: iron
+  source: manual
+  subdepartment: hippo
+  uuid: hrz-gray-hippo-madagascar-research-maha-1
+services:
+- compute.googleapis.com
+iam_bindings_additive:
+  maha-group-tunnelResourceAccessor:
+    role: roles/iap.tunnelResourceAccessor
+    member: group:hrz-hippo-ofk-res-maha-1-admins@horizon285.com
+  maha-group-owner:
+    role: roles/owner
+    member: group:hrz-hippo-ofk-res-maha-1-admins@horizon285.com
+  maha-group-viewer:
+    role: roles/viewer
+    member: group:hrz-hippo-ofk-res-maha-1-readers@horizon285.com
+org_policies: 
+    gcp.resourceLocations:
+      rules:
+      - allow:
+          values:
+          - in:me-west1-locations
+          - in:europe-locations
+budget:
+  amount: 1000
+  name: hrz-hippo-ofk-res-maha-1-budget
+  filters:
+    include_credits: true
+    notify_default_recipients: false
+  thresholds:
+    current:
+    - 0.5
+    - 0.7
+    - 0.8
+    - 1.0
+    - 1.25
+    forecasted:
+    - 1.0
+    - 1.25

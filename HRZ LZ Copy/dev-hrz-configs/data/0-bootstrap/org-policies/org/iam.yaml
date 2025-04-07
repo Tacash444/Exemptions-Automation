@@ -1,0 +1,70 @@
+# skip boilerplate check
+#
+# sample subset of useful organization policies, edit to suit requirements
+
+iam.allowServiceAccountCredentialLifetimeExtension:
+  rules:
+    - deny:
+        all: true
+
+iam.workloadIdentityPoolAwsAccounts:
+  rules:
+    - deny:
+        all: true
+
+iam.workloadIdentityPoolProviders:
+  rules:
+    - allow:
+        all: true
+
+iam.automaticIamGrantsForDefaultServiceAccounts:
+  rules:
+    - enforce: false
+
+iam.disableServiceAccountKeyUpload:
+  rules:
+    - enforce: true
+
+iam.disableAuditLoggingExemption:
+  rules:
+    - enforce: true
+
+#########getting error when trying to apply current state
+# iam.disableCrossProjectServiceAccountUsage:
+#   rules:
+#   - enforce: true
+
+iam.disableServiceAccountCreation:
+  rules:
+    - enforce: false
+
+iam.disableServiceAccountKeyCreation:
+  rules:
+    - enforce: true
+
+iam.disableWorkloadIdentityClusterCreation:
+  rules:
+    - enforce: false
+
+iam.allowedPolicyMemberDomains:
+  rules:
+  - allow:
+      values:
+      - "C01xhtnf9"
+# iam.allowedPolicyMemberDomains:
+#   rules:
+#     - allow:
+#         all: true
+
+iam.restrictCrossProjectServiceAccountLienRemoval:
+  rules:
+    - enforce: true
+
+iam.serviceAccountKeyExpiryHours:
+  rules:
+    - allow:
+        values:
+          - 720h
+# iam.disableCrossProjectServiceAccountUsage:
+#   rules:
+#    - enforce: true

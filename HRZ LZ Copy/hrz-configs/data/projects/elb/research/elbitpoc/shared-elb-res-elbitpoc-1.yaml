@@ -1,0 +1,51 @@
+firewall_rules: null
+labels:
+  accountname: shared
+  application: elbitpoc
+  budget: 500
+  costcenter: sharedresource
+  createdby: ygavrikov31-horizon285-com
+  createddate: 11-03-2025
+  department: ted
+  environment: research
+  expirationdate: none
+  managedby: mmrm
+  owners: ygavrikov31-horizon285-com
+  project: iron
+  source: manual
+  uuid: hrz-ted-shared-sharedresource-research-elbitpoc-1
+services:
+- compute.googleapis.com
+iam_bindings_additive:
+  elbitpoc-group-tunnelResourceAccessor:
+    role: roles/iap.tunnelResourceAccessor
+    member: group:hrz-shared-elb-res-elbitpoc-1-admins@horizon285.com
+  elbitpoc-group-owner:
+    role: roles/owner
+    member: group:hrz-shared-elb-res-elbitpoc-1-admins@horizon285.com
+  elbitpoc-group-viewer:
+    role: roles/viewer
+    member: group:hrz-shared-elb-res-elbitpoc-1-readers@horizon285.com
+org_policies: 
+    gcp.resourceLocations:
+      rules:
+      - allow:
+          values:
+          - in:europe-west3-locations
+          - in:me-west1-locations
+budget:
+  amount: 500
+  name: hrz-shared-elb-res-elbitpoc-1-budget
+  filters:
+    include_credits: true
+    notify_default_recipients: false
+  thresholds:
+    current:
+    - 0.5
+    - 0.7
+    - 0.8
+    - 1.0
+    - 1.25
+    forecasted:
+    - 1.0
+    - 1.25

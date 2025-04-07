@@ -1,0 +1,24 @@
+descriptive_name: "White"
+admin_group: "gcp-organization-admins@horizon285.com"
+
+units:
+  biolog:
+    descriptive_name: "Biolog"
+    admin_group: "gcp-organization-admins@horizon285.com"
+    integration: false
+    billing_account: "white"
+    sub_units:
+      bio: 
+        descriptive_name: "Bio"
+        res_workloads: 
+  dig:
+    descriptive_name: "Dig"
+    admin_group: "gcp-organization-admins@horizon285.com"
+    integration: false
+    billing_account: "white"
+    sub_units:
+      qkd: 
+        descriptive_name: "QKD"
+        res_workloads: 
+          
+    

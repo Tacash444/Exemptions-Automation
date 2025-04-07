@@ -1,0 +1,11 @@
+from:
+  identities:
+    - group:gcp-organization-admins@horizon285.com
+  identity_type: IDENTITY_TYPE_UNSPECIFIED
+to:
+  resources: ["*"]
+  operations:
+  - service_name: "*"
+
+perimeters:
+  - automations

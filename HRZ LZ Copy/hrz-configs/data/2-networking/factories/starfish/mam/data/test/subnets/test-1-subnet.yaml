@@ -1,0 +1,9 @@
+iam_bindings_additive:
+  owner_test_1_group_binding:
+    member: group:hrz-starfi-mam-dat-test-1-admins@horizon285.com
+    role: roles/compute.networkAdmin
+  reader_test_1_group_binding:
+    member: group:hrz-starfi-mam-dat-test-1-readers@horizon285.com
+    role: roles/compute.networkViewer
+ip_cidr_range: 10.5.12.0/24
+region: me-west1

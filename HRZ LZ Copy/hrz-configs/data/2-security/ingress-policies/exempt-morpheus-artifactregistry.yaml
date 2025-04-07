@@ -1,0 +1,13 @@
+from:
+  identities: 
+    - serviceAccount:574658784042-compute@developer.gserviceaccount.com
+  access_levels: ["*"]
+
+to:
+  resources: ["projects/574658784042"]
+  operations:
+  - service_name: "artifactregistry.googleapis.com"
+    method_selectors: ["*"]
+
+perimeters:
+  - morpheus_research

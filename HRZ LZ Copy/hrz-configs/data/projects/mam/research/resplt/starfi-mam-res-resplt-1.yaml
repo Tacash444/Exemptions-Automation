@@ -1,0 +1,59 @@
+firewall_rules: null
+labels:
+  application: research-platform
+  budget: '300'
+  costcenter: evasterias
+  createdby: mcohen86-dev-ayen318-com
+  createddate: 03-02-2025
+  department: turkiz
+  environment: research
+  expirationdate: none
+  managedby: mmrm
+  owners: mcohen86-dev-ayen318-com
+  project: iron
+  source: manual
+  subdepartment: starfish
+  uuid: hrz-turkiz-starfish-evasterias-research-resplt-1
+services:
+- aiplatform.googleapis.com
+- notebooks.googleapis.com
+- compute.googleapis.com
+iam_bindings_additive:
+  resplt-group-tunnelResourceAccessor:
+    role: roles/iap.tunnelResourceAccessor
+    member: group:hrz-starfi-mam-res-resplt-1-admins@horizon285.com
+  resplt-group-owner:
+    role: roles/owner
+    member: group:hrz-starfi-mam-res-resplt-1-admins@horizon285.com
+  resplt-group-viewer:
+    role: roles/viewer
+    member: group:hrz-starfi-mam-res-resplt-1-admins@horizon285.com
+org_policies:
+  ainotebooks.restrictVpcNetworks:
+    rules:
+    - allow:
+        all: true
+  ainotebooks.accessMode:
+    rules:
+    - allow:
+        all: true
+budget:
+  amount: 300
+  name: hrz-starfi-mam-res-resplt-1-budget
+  filters:
+    include_credits: true
+    notify_default_recipients: false
+  thresholds:
+    current:
+    - 0.5
+    - 0.7
+    - 0.8
+    - 1.0
+    - 1.25
+    forecasted:
+    - 1.0
+    - 1.25
+robots_iam:
+  roles/compute.networkUser:
+  - aiplatform
+  - notebooks

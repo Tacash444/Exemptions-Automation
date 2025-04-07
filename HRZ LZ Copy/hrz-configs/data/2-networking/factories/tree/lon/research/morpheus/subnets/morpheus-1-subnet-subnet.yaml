@@ -1,0 +1,9 @@
+iam_bindings_additive:
+  owner_morpheus_1_group_binding:
+    member: group:hrz-tree-lon-res-morpheus-1-admins@horizon285.com
+    role: roles/compute.networkAdmin
+  reader_morpheus_1_group_binding:
+    member: group:hrz-tree-lon-res-morpheus-1-readers@horizon285.com
+    role: roles/compute.networkViewer
+ip_cidr_range: 10.5.10.0/24
+region: me-west1

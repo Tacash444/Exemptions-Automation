@@ -1,0 +1,24 @@
+compute.restrictVpcPeering:
+  rules:
+  - allow:
+      all: true
+
+compute.restrictCloudNATUsage:
+  rules:
+  - allow:
+      all: true
+
+compute.disableGlobalLoadBalancing:
+  rules:
+    - enforce: false
+
+compute.restrictLoadBalancerCreationForTypes:
+  rules:
+  - allow:
+      all: true
+
+iam.workloadIdentityPoolProviders:
+  rules:
+  - allow:
+      values: 
+      - https://token.actions.githubusercontent.com

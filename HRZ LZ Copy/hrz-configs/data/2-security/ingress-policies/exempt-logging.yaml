@@ -1,0 +1,13 @@
+from:
+  identities: 
+    - serviceAccount:service-785198401493@gcp-sa-logging.iam.gserviceaccount.com
+  access_levels: ["*"]
+
+to:
+  resources: ["projects/201969375572"]
+  operations:
+  - service_name: "logging.googleapis.com"
+    method_selectors: ["*"]
+
+perimeters:
+  - sa_research

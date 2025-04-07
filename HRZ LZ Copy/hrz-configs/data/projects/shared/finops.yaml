@@ -1,0 +1,40 @@
+name: finops-0
+folder: billing
+budget:
+  amount: 300
+  filters:
+    include_credits: true
+    notify_default_recipients: false
+  name: hrz-finops-0-budget
+  thresholds:
+    current:
+    - 0.5
+    - 0.7
+    - 0.8
+    - 1.0
+    - 1.25
+    forecasted:
+    - 1.0
+    - 1.25
+labels:
+  budget: 300
+  costcenter: lz-shared
+  department: lz-shared
+org_policies: 
+  compute.restrictVpcPeering:
+    rules:
+    - allow:
+        all: true
+
+
+  cloudscheduler.allowedTargetTypes:
+    rules:
+    - allow:
+        values: 
+        - HTTP
+
+
+iam_bindings_additive:
+  finops-admins-owner:
+    role: "roles/owner"
+    member: "group:gcp-organization-admins@horizon285.com"

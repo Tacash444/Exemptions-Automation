@@ -1,0 +1,32 @@
+# from:
+#   identities:
+#     - serviceAccount:grd-prod-resman-0@grd-prod-iac-core-0.iam.gserviceaccount.com
+#     - serviceAccount:grd-security-0@grd-prod-iac-core-0.iam.gserviceaccount.com
+#     - serviceAccount:grd-prod-resman-global-net-0@grd-prod-iac-core-0.iam.gserviceaccount.com
+#     - serviceAccount:grd-prod-resman-geo-net-0@grd-prod-iac-core-0.iam.gserviceaccount.com
+#     - serviceAccount:grd-geo-dig-preprod-pf@grd-prod-iac-core-0.iam.gserviceaccount.com
+#     - serviceAccount:grd-geo-map-preprod-pf@grd-prod-iac-core-0.iam.gserviceaccount.com
+#     - serviceAccount:grd-geo-sat-preprod-pf@grd-prod-iac-core-0.iam.gserviceaccount.com
+#     - serviceAccount:grd-geo-dig-prod-pf@grd-prod-iac-core-0.iam.gserviceaccount.com
+#     - serviceAccount:grd-geo-map-prod-pf@grd-prod-iac-core-0.iam.gserviceaccount.com
+#     - serviceAccount:grd-geo-sat-prod-pf@grd-prod-iac-core-0.iam.gserviceaccount.com
+#     - user:emu1@skyplatformtest.com
+#   identity_type: IDENTITY_TYPE_UNSPECIFIED
+# to:
+#   resources: ["*"]
+#   operations:
+#   - service_name: "*"
+
+# perimeters:
+#   - prod_untrusted
+#   - prod_trusted
+#   - prod_dmz
+  
+#   - preprod_untrusted
+#   - preprod_trusted
+#   - preprod_dmz
+  
+
+#   - interconnect
+#   - distribute
+#   - ingress

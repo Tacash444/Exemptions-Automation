@@ -1,0 +1,75 @@
+name: prod-automations-0
+folder: iac
+# budget:
+#   amount: 300
+#   filters:
+#     include_credits: true
+#     notify_default_recipients: false
+#   name: hrz-wizgcp-0-budget
+#   thresholds:
+#     current:
+#     - 0.5
+#     - 0.7
+#     - 0.8
+#     - 1.0
+#     - 1.25
+#     forecasted:
+#     - 1.0
+#     - 1.25
+labels:
+  # budget: 300
+  costcenter: lz-shared
+  department: lz-shared
+org_policies:
+  compute.restrictVpcPeering:
+    rules:
+    - allow:
+        all: true
+  compute.restrictCloudNATUsage:
+    rules:
+    - allow:
+        all: true
+  compute.disableGlobalLoadBalancing:
+    rules:
+      - enforce: false
+  compute.restrictLoadBalancerCreationForTypes:
+    rules:
+    - allow:
+        all: true
+  iam.workloadIdentityPoolProviders:
+    rules:
+    - allow:
+        all: true
+  iam.workloadIdentityPoolAwsAccounts:
+    rules:
+    - allow:
+        all: true
+        
+services:
+  - apigee.googleapis.com
+  - cloudbuild.googleapis.com
+  - cloudfunctions.googleapis.com
+  - cloudresourcemanager.googleapis.com
+  - compute.googleapis.com
+  - container.googleapis.com
+  - iam.googleapis.com
+  - iamcredentials.googleapis.com
+  - orgpolicy.googleapis.com
+  - run.googleapis.com
+  - secretmanager.googleapis.com
+  - servicenetworking.googleapis.com
+  - serviceusage.googleapis.com
+  - storage.googleapis.com
+
+iam_bindings_additive:
+  resman-owner:
+    role: "roles/owner"
+    member: "serviceAccount:hrz-prod-resman-0@hrz-prod-iac-core-0.iam.gserviceaccount.com"
+  automations-state-owner:
+    role: "roles/owner"
+    member: "serviceAccount:hrz-prod-resman-auto-0@hrz-prod-iac-core-0.iam.gserviceaccount.com"
+  org-admin-owner:
+    role: "roles/owner"
+    member: "group:gcp-organization-admins@horizon285.com"
+
+perimeter: automations

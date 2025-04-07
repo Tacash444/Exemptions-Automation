@@ -1,0 +1,16 @@
+descriptive_name: "Green"
+admin_group: "gcp-organization-admins@dev.horizon285.com"
+
+units:
+  geo:
+    descriptive_name: "Geo"
+    admin_group: "gcp-organization-admins@dev.horizon285.com"
+    billing_account: "green"
+    sub_units:
+      map: 
+        descriptive_name: "Map"
+      dig: 
+        descriptive_name: "Dig"
+      sat: 
+        descriptive_name: "Sat"
+        admin_group: "gcp-organization-admins@dev.horizon285.com"

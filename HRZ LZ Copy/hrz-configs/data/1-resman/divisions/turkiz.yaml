@@ -1,0 +1,12 @@
+admin_group: gcp-organization-admins@horizon285.com
+descriptive_name: Turkiz
+units:
+  starfish:
+    admin_group: gcp-organization-admins@horizon285.com
+    descriptive_name: Starfish
+    integration: false
+    sub_units:
+      bsm:
+        descriptive_name: BSMCH
+      mam:
+        descriptive_name: Mam

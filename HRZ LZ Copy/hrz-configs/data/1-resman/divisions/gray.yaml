@@ -1,0 +1,12 @@
+descriptive_name: "Gray"
+admin_group: "gcp-organization-admins@horizon285.com"
+
+units:
+  hippo:
+    descriptive_name: "Hippo"
+    admin_group: "gcp-organization-admins@horizon285.com"
+    integration: false
+    billing_account: "turkiz"
+    sub_units:
+      ofk:
+        descriptive_name: "Ofk"
