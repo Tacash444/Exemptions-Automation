@@ -1,5 +1,4 @@
 from Constraint import Constraint
-from AccessDecisionEnum import AccessDecisionEnum
 
 class ListConstraint(Constraint):
     def __init__(self, name, accessDecision, allowAll=False, values=None):
@@ -15,7 +14,7 @@ class ListConstraint(Constraint):
         return prefix + (prefix.join(map(str, self.values)))
     
     def toString(self):
-        basicString = f"{self.name}:\n  rules:\n  - {self.accessDecision}\n"
+        basicString = f"{self.name}:\n  rules:\n  - {self.accessDecision}:\n"
         if self.allowAll:
             return f"{basicString}      all: true"
         else:
