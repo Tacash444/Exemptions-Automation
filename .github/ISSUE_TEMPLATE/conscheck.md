@@ -1,9 +1,26 @@
 ---
-name: conscheck
-about: Describe this issue template's purpose here.
-title: ''
-labels: ''
-assignees: Tacash444, dr-everythingllbealright
+name: Exemption Request
+description: Request an exemption for specific policies.
+title: "[Exemption]: "
+labels: ["exemption"]
+assignees: []
+
+body:
+  - type: input
+    attributes:
+      label: Policy Name
+      description: Enter the policy for which you request an exemption.
+      placeholder: e.g., aifirewall.restrictPublicIP
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Reason for Exemption
+      description: Clearly explain why you need the exemption.
+      placeholder: Describe your use case here.
+    validations:
+      required: true
 
 ---
 
