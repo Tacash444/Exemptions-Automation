@@ -1,5 +1,6 @@
 ---
 name: Exemption Request
+about: Request an exemption for specific policies.
 description: Request an exemption for specific policies.
 title: "[Exemption]: "
 labels: ["exemption"]
