@@ -1,4 +1,4 @@
 class Constraint:
-    def __init__(self, name, type):
+    def __init__(self, name):
         self.name = name
-        self.type = type
+
