@@ -33,20 +33,4 @@ jobs:
           git commit -m "Add file for issue #${ISSUE_NUMBER}"
 
           git push --set-upstream origin $BRANCH_NAME
-      - name: Open Pull Request
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: >
-            const issueNumber = context.issue.number;
-
-            const branchName = `issue-${issueNumber}`;
-
-            await github.rest.pulls.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `Issue #${issueNumber} - Auto-generated PR`,
-              head: branchName,
-              base: 'main',
-              body: `This pull request was automatically created from issue #${issueNumber}.`
-            });
+      
