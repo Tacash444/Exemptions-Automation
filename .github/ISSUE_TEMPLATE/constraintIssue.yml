@@ -13,10 +13,10 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: version
+    id: type
     attributes:
-      label: Version
-      description: What version of our software are you running?
+      label: Type
+      description: Choose the constraint type. Organization Policy Constraint can be a boolean(meaning they are enforced or not) and list values, where you choose a value that depends on the constraint type.
       options:
         - Boolean
         - List
