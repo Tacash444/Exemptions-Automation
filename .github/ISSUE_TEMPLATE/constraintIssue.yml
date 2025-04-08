@@ -1,23 +1,25 @@
-name: Bug Report
-description: File a bug report.
-title: "[Bug]: "
-labels: ["bug", "triage"]
-projects: ["octo-org/1", "octo-org/44"]
-assignees:
-  - octocat
+name: Org Policy Constraint Issue
+description: File an organization policy constraint issue so that valid personalls will be able to accept your request.
+title: "[Constraint]: "
+labels: ["constraint", "exemption"]
+assignees: ["Tacash444"]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report!
   - type: input
-    id: contact
+    id: constraint_name
     attributes:
-      label: Contact Details
-      description: How can we get in touch with you if we need more info?
-      placeholder: ex. email@example.com
+      label: Constraint Name
+      description: What is the name of the organization policy constraint you are trying to apply?
+      placeholder: ainotebooks.restrictPublicIp
     validations:
-      required: false
+      required: true
+- type: dropdown
+    id: types
+    attributes:
+      label: Type:
+      multiple: false
+      options:
+        - Boolean
+        - List
   - type: textarea
     id: what-happened
     attributes:
