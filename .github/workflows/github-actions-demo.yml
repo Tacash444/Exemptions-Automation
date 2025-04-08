@@ -1,29 +1,22 @@
-name: Create File from Issue
+name: Basic Issue File Creation
+
 on:
   issues:
     types: [opened]
 
 jobs:
-  issue-to-file:
+  create-file:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create file from issue details
+      - name: Create hello.txt file
         run: |
-          ISSUE_NUMBER=${{ github.event.issue.number }}
-          mkdir -p issues
-          FILE_PATH="issues/issue-${ISSUE_NUMBER}.md"
-
-          echo "# Issue #${ISSUE_NUMBER}" > $FILE_PATH
-          echo "## Title:" >> $FILE_PATH
-          echo "${{ github.event.issue.title }}" >> $FILE_PATH
-          echo "" >> $FILE_PATH
-          echo "## Description:" >> $FILE_PATH
-          echo "${{ github.event.issue.body }}" >> $FILE_PATH
+          echo "Hello from issue #${{ github.event.issue.number }}" > hello.txt
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Automated commit: Add issue file #${{ github.event.issue.number }}"
+          commit_message: "Automated commit: hello.txt created for issue #${{ github.event.issue.number }}"
