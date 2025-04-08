@@ -12,6 +12,17 @@ body:
       placeholder: ainotebooks.restrictPublicIp
     validations:
       required: true
+  - type: dropdown
+    id: types
+    attributes:
+      label: Type:
+      multiple: false
+      options:
+        - Boolean
+        - List
+      default: 0
+    validations:
+      required: true
   - type: textarea
     id: what-happened
     attributes:
