@@ -7,14 +7,14 @@ jobs:
   issue-to-file:
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # Needed to commit files automatically
+      contents: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Create file from issue details
         run: |
           ISSUE_NUMBER=${{ github.event.issue.number }}
+          mkdir -p issues
           FILE_PATH="issues/issue-${ISSUE_NUMBER}.md"
 
           echo "# Issue #${ISSUE_NUMBER}" > $FILE_PATH
@@ -24,7 +24,6 @@ jobs:
           echo "## Description:" >> $FILE_PATH
           echo "${{ github.event.issue.body }}" >> $FILE_PATH
 
-      - name: Commit and push new issue file
-        uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Automated commit: Add file for issue #${{ github.event.issue.number }}"
+          commit_message: "Automated commit: Add issue file #${{ github.event.issue.number }}"
