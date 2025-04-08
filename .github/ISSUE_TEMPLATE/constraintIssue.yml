@@ -4,10 +4,6 @@ title: "[Constraint]: "
 labels: ["constraint", "exemption"]
 assignees: ["Tacash444"]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report!
   - type: input
     id: contact
     attributes:
