@@ -15,7 +15,7 @@ body:
     id: constraint_name
     attributes:
       label: Constraint Name
-      description: Enter the full name of the constraint you're applying.
+      description: Enter the full name of the constraint you're applying
       placeholder: e.g., ainotebooks.restrictPublicIp
     validations:
       required: true
