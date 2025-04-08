@@ -1,58 +1,80 @@
-name: Org Policy Constraint Issue
-description: File an organization policy constraint issue so that valid personalls will be able to accept your request.
+name: Organization Policy Constraint Request
+description: Request a constraint exemption for organization policies.
 title: "[Constraint]: "
 labels: ["constraint", "exemption"]
-assignees: ["Tacash444"]
+assignees: []
+
 body:
+  - type: markdown
+    attributes:
+      value: |
+        **👋 Please fill in the following information about your constraint request clearly.**
+        ---
+  
   - type: input
     id: constraint_name
     attributes:
       label: Constraint Name
-      description: What is the name of the organization policy constraint you are trying to apply?
-      placeholder: ainotebooks.restrictPublicIp
+      description: Enter the full name of the constraint you're applying.
+      placeholder: e.g., ainotebooks.restrictPublicIp
     validations:
       required: true
+  
   - type: dropdown
-    id: type
+    id: constraint_type
     attributes:
-      label: Type
-      description: Choose the constraint type. Organization Policy Constraint can be a boolean(meaning they are enforced or not) and list values, where you choose a value that depends on the constraint type.
+      label: Constraint Type
+      description: Choose the type of the constraint.
       options:
         - Boolean
         - List
-      default: 0
     validations:
       required: true
-  - type: textarea
-    id: what-happened
+  
+  - type: markdown
     attributes:
-      label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
-      value: "A bug happened!"
-    validations:
-      required: true
+      value: |
+        **⚠️ Fill out the following fields ONLY if you selected "List" above.**
+        ---
+  
   - type: dropdown
-    id: browsers
+    id: access_decision
     attributes:
-      label: What browsers are you seeing the problem on?
-      multiple: true
+      label: Access Decision (List Constraints Only)
+      description: Select the access decision for your list constraint.
       options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
+        - Allow
+        - Deny
+    validations:
+      required: false
+  
+  - type: dropdown
+    id: apply_to_all
+    attributes:
+      label: Apply to All or Specific Values? (List Constraints Only)
+      description: Do you want to apply this constraint to all or specific values?
+      options:
+        - All Values
+        - Specific Values
+    validations:
+      required: false
+  
   - type: textarea
-    id: logs
+    id: specific_values
     attributes:
-      label: Relevant log output
-      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
-      render: shell
-  - type: checkboxes
-    id: terms
+      label: Specific Values (if applicable)
+      description: |
+        If you selected "Specific Values" above, enter each value on a new line.
+      placeholder: |
+        organizations/1234567890
+        folders/0987654321
+    validations:
+      required: false
+  
+  - type: textarea
+    id: reason
     attributes:
-      label: Code of Conduct
-      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com). 
-      options:
-        - label: I agree to follow this project's Code of Conduct
-          required: true
+      label: Reason for Constraint Request
+      description: Clearly describe why you require this constraint.
+    validations:
+      required: true
