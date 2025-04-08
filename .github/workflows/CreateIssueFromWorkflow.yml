@@ -1,0 +1,52 @@
+---
+name: Create Branch and PR on Issue
+on:
+  issues:
+    types:
+      - opened
+jobs:
+  create-branch-and-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Create new branch, file, and push
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: >
+          BRANCH_NAME="issue-${ISSUE_NUMBER}"
+
+          git checkout -b $BRANCH_NAME
+
+
+          echo "This file is auto-generated for issue #${ISSUE_NUMBER}" > issue-${ISSUE_NUMBER}.txt
+
+          git config user.name "github-actions"
+
+          git config user.email "actions@github.com"
+
+          git add .
+
+          git commit -m "Add file for issue #${ISSUE_NUMBER}"
+
+          git push --set-upstream origin $BRANCH_NAME
+      - name: Open Pull Request
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: >
+            const issueNumber = context.issue.number;
+
+            const branchName = `issue-${issueNumber}`;
+
+            await github.rest.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Issue #${issueNumber} - Auto-generated PR`,
+              head: branchName,
+              base: 'main',
+              body: `This pull request was automatically created from issue #${issueNumber}.`
+            });
