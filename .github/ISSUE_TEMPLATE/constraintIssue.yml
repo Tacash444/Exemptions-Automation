@@ -13,13 +13,13 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: types
+    id: version
     attributes:
-      label: Type:
-      multiple: false
+      label: Version
+      description: What version of our software are you running?
       options:
-        - Boolean
-        - List
+        - 1.0.2 (Default)
+        - 1.0.3 (Edge)
       default: 0
     validations:
       required: true
