@@ -1,24 +1,30 @@
-name: Update Repo Files
-on: [push]
+name: Create File from Issue
+on:
+  issues:
+    types: [opened]
 
 jobs:
-  modify-and-commit:
+  issue-to-file:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Important permission to commit changes
+      contents: write   # Needed to commit files automatically
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref }}  # current branch
 
-      - name: Modify or create file
+      - name: Create file from issue details
         run: |
-          echo "Hello from GitHub Actions 🚀" > hello.txt
-          date >> hello.txt
+          ISSUE_NUMBER=${{ github.event.issue.number }}
+          FILE_PATH="issues/issue-${ISSUE_NUMBER}.md"
 
-      - name: Commit and push changes
+          echo "# Issue #${ISSUE_NUMBER}" > $FILE_PATH
+          echo "## Title:" >> $FILE_PATH
+          echo "${{ github.event.issue.title }}" >> $FILE_PATH
+          echo "" >> $FILE_PATH
+          echo "## Description:" >> $FILE_PATH
+          echo "${{ github.event.issue.body }}" >> $FILE_PATH
+
+      - name: Commit and push new issue file
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Automated commit: Update hello.txt"
-          branch: ${{ github.ref }}
+          commit_message: "Automated commit: Add file for issue #${{ github.event.issue.number }}"
