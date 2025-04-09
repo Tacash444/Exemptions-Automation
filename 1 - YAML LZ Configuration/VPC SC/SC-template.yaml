@@ -88,11 +88,6 @@ body:
         - ANY_IDENTITY
         - ANY_USER_ACCOUNT
         - ANY_SERVICE_ACCOUNT
-        - preprod_untrusted
-        - preprod_trusted
-        - preprod_dmz
-        - interconnect
-        - cicd
     validations:
       required: false
 
