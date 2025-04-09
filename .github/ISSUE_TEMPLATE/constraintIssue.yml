@@ -1,8 +1,10 @@
+---
 name: Organization Policy Constraint Request
 description: Request a constraint exemption for organization policies.
 title: "[Constraint]: "
 labels: ["constraint", "exemption"]
 assignees: []
+---
 
 body:
   - type: markdown
