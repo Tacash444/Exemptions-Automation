@@ -23,7 +23,7 @@ jobs:
           git checkout -b "$BRANCH_NAME"
 
           # Just echo the body into a file (multiline should be preserved by echo with quotes)
-          echo "Labels: ${{ toJson(github.event.issue.labels) }}"
+          echo "Labels: ${{ toJson(github.event.issue.labels) }}" > issue_body.yaml
 
           git config user.name "github-actions"
           git config user.email "actions@github.com"
