@@ -19,13 +19,16 @@ jobs:
         env:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
-          BRANCH_NAME="issue-${ISSUE_NUMBER}"
+          BRANCH_NAME="issue-${ISSUE_NUMBER}@
           git checkout -b "$BRANCH_NAME"
 
           ISSUE_BODY="${{ github.event.issue.body }}"
+          CONSTRAINT_NAME=$(awk '/^### Constraint Name
+ 
           echo "$ISSUE_BODY" | sed 's/r$//' > issue_body.txt
           # Just echo the body into a file (multiline should be preserved by echo with quotes)
-          
+          CONSTRAINT_NAME=$(awk '/^### Constraint Name$/ {flag=1; next} /^### / {flag=0} flag {gsub(/\r/, ""); if (NF) {print; exit}}' issue_body.txt | sed 's/^[[:space:]]*//')
+          echo "Constraint name is: $CONSTRAINT_NAME"
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add .
