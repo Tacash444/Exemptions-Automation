@@ -13,7 +13,7 @@ class ListConstraint(Constraint):
         prefix = "\n      - "
         return prefix + (prefix.join(map(str, self.values)))
     
-    def toString(self):
+    def __str__(self):
         basicString = f"{self.name}:\n  rules:\n  - {self.accessDecision}:\n"
         if self.allowAll:
             return f"{basicString}      all: true"
