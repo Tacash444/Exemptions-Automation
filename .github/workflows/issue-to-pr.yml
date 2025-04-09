@@ -22,9 +22,10 @@ jobs:
           BRANCH_NAME="issue-${ISSUE_NUMBER}"
           git checkout -b "$BRANCH_NAME"
 
+          ISSUE_BODY = "${{ github.event.issue.body }}"
+          echo "$ISSUE_BODY" | sed 's/r$//' > issue_body.yaml
           # Just echo the body into a file (multiline should be preserved by echo with quotes)
-          echo "Labels: ${{ toJson(github.event.issue.labels) }}" > issue_body.yaml
-
+          
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add .
