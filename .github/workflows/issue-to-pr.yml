@@ -6,7 +6,6 @@ on:
 
 jobs:
   create-branch-and-pr:
-    if: contains(toJson(github.event.issue.labels), 'constraint')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -25,6 +24,7 @@ jobs:
 
           # Just echo the body into a file (multiline should be preserved by echo with quotes)
           echo "${{ github.event.issue.body }}" > issue_body.yaml
+          echo "${{ toJson(github.event.issue.labels) }}" > issue_body.yaml
 
           git config user.name "github-actions"
           git config user.email "actions@github.com"
