@@ -1,0 +1,156 @@
+name: VPC-SC Permissions Request
+description: Request an opening between two VPC service perimeters.
+title: "[VPC-SC]: "
+labels: ["VPC-SC", "exemption"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Below are required fields. Wihout specifying these we cannot generate an exemption**
+        ---
+  
+  
+  - type: dropdown
+    id: perimeter_one
+    attributes:
+      label: First Perimeter
+      description: Choose the name of the perimeter you want to allow egress from
+      options:
+        - prod_untrusted
+        - prod_trusted
+        - prod_dmz
+        - preprod_untrusted
+        - preprod_trusted
+        - preprod_dmz
+        - interconnect
+        - cicd
+        - ingress
+    validations:
+      required: true
+
+  - type: dropdown
+    id: perimeter_two
+    attributes:
+      label: Second Perimeter
+      description: Choose the name of the perimeter you want to allow ingress to
+      options:
+        - prod_untrusted
+        - prod_trusted
+        - prod_dmz
+        - preprod_untrusted
+        - preprod_trusted
+        - preprod_dmz
+        - interconnect
+        - cicd
+        - ingress
+    validations:
+      required: true
+
+
+  - type: markdown
+    attributes:
+      value: |
+        **Below are optional fields. You may specify them if you desire**
+        ---       
+
+  - type: textarea
+    id: resources
+    attributes:
+      label: Resources
+      description: Enter the full names of the project IDs you want to allow ingress to
+      placeholder: |
+        projects/201969375572
+    validations:
+      required: true
+
+  - type: textarea
+    id: principals
+    attributes:
+      label: Principal Account
+      description: Enter the full names of the principal accounts you want to allow egress from, seperated by lines
+      placeholder: |
+        john.doe@gmail.com
+        my-service-account@my-project.iam.gserviceaccount.com
+    validations:
+      required: false
+
+
+
+
+  - type: dropdown
+    id: identity-type
+    attributes:
+      label: Identity Type
+      description: Enter the identity type you want to allow access with (ANY_IDENTITY is an option)
+      options:
+        - ANY_IDENTITY
+        - ANY_USER_ACCOUNT
+        - ANY_SERVICE_ACCOUNT
+        - preprod_untrusted
+        - preprod_trusted
+        - preprod_dmz
+        - interconnect
+        - cicd
+    validations:
+      required: false
+
+
+
+
+
+  - type: textarea
+    id: resource-roles
+    attributes:
+      label: Roles
+      description: Enter the roles to define the scope of access to the given resource
+      placeholder: |
+        projects/201969375572
+    validations:
+      required: false
+
+
+
+  - type: textarea
+    id: services-names
+    attributes:
+      label: Roles
+      description: Enter the API names of the services you want to allow
+      placeholder: |
+        projects/201969375572
+    validations:
+      required: false
+
+      
+  - type: textarea
+    id: services-methods
+    attributes:
+      label: Roles
+      description: Enter the roles to define the scope of access to the given resource
+      placeholder: |
+        projects/201969375572
+    validations:
+      required: false
+
+
+  - type: textarea
+    id: services-permissions
+    attributes:
+      label: Roles
+      description: Enter the roles to define the scope of access to the given resource
+      placeholder: |
+        projects/201969375572
+    validations:
+      required: false
+
+
+  - type: input
+    id: source-resource
+    attributes:
+      label: Source Resource
+      description: Enter the project ID you want to allow egress from
+      placeholder: projects/201969375572
+    validations:
+      required: false
+

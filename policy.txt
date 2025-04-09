@@ -1,9 +1,5 @@
 from: 
     identities:
     - service@gmail.com
-  to: 
-    operations:
-    roles:
-    - admin
 perimeters:
  - dmz
