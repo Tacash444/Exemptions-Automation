@@ -23,7 +23,7 @@ jobs:
           git checkout -b "$BRANCH_NAME"
 
           ISSUE_BODY = "${{ github.event.issue.body }}"
-          echo "$ISSUE_BODY" | sed 's/r$//' > issue_body.yaml
+          echo "$ISSUE_BODY" | sed 's/r$//' > issue_body.txt
           # Just echo the body into a file (multiline should be preserved by echo with quotes)
           
           git config user.name "github-actions"
