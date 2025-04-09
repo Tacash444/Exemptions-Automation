@@ -15,19 +15,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create new branch, file, and push
+      - name: Create new branch and file from issue body
         env:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           BRANCH_NAME="issue-${ISSUE_NUMBER}"
-          git checkout -b $BRANCH_NAME
+          git checkout -b "$BRANCH_NAME"
 
-          echo "This file is auto-generated for issue #${ISSUE_NUMBER}" > issue-${ISSUE_NUMBER}.txt
+          # Just echo the body into a file (multiline should be preserved by echo with quotes)
+          echo "${{ github.event.issue.body }}" > "issue-${ISSUE_NUMBER}.md"
+
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add .
           git commit -m "Add file for issue #${ISSUE_NUMBER}"
-          git push --set-upstream origin $BRANCH_NAME
+          git push --set-upstream origin "$BRANCH_NAME"
 
       - name: Open Pull Request
         uses: actions/github-script@v7
@@ -42,5 +44,5 @@ jobs:
               title: `Issue #${issueNumber} - Auto-generated PR`,
               head: branchName,
               base: 'main',
-              body: `This pull request was automatically created from issue #${issueNumber}.`
+              body: `This pull request was automatically created from issue #${issueNumber}. The issue body has been committed as 'issue-${issueNumber}.md'.`
             });
