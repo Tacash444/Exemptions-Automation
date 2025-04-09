@@ -6,6 +6,7 @@ on:
 
 jobs:
   create-branch-and-pr:
+    if: contains(toJson(github.event.issue.labels), 'constraint')
     runs-on: ubuntu-latest
     permissions:
       contents: write
