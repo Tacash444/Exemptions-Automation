@@ -1,7 +1,9 @@
-from ListConstraint import ListConstraint
-from BooleanConstraint import BooleanConstraint
-from AccessDecisionEnum import AccessDecisionEnum
+def createYamlFileAtPath(path, filename, exemptionContent):
+    yamlFile = f"{path}\\{filename}.yaml"
 
-bc = BooleanConstraint("ainotebooks.restrictPublicIp")
-lc = ListConstraint("resourcemanager.accessBoundaries", AccessDecisionEnum.ALLOW, False, ["under:organizations/986108084926"]) 
+    with open(yamlFile, 'w') as file:
+        file.write(exemptionContent)
+
+def createConstraintAtPath(path, filename, constraint):
+    createYamlFileAtPath(path, filename, str(constraint))
 
