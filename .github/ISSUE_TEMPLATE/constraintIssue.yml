@@ -12,7 +12,7 @@ body:
       value: |
         **👋 Please fill in the following information about your constraint request clearly.**
         ---
-    - type: dropdown
+  - type: dropdown
     id: constraint_name
     attributes:
       label: Constraint Name
