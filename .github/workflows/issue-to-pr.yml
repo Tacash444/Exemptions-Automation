@@ -28,9 +28,7 @@ jobs:
           CONSTRAINT_NAME=$(awk '/^### Constraint Name
  
           echo "$ISSUE_BODY" | sed 's/r$//' > issue_body.txt
-          # Just echo the body into a file (multiline should be preserved by echo with quotes)
-          CONSTRAINT_NAME=$(awk '/^### Constraint Name$/ {flag=1; next} /^### / {flag=0} flag {gsub(/\r/, ""); if (NF) {print; exit}}' issue_body.txt | sed 's/^[[:space:]]*//')
-          echo "Constraint name is: $CONSTRAINT_NAME"
+          # Just echo the body into a file (multiline should be preserved by echo with quote)
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add .
