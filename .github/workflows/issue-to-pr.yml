@@ -6,6 +6,8 @@ on:
 
 jobs:
   create-branch-and-pr:
+    if: contains(github.event.issue.labels.*.name, 'constraint') &&
+      contains(github.event.issue.labels.*.name, 'exemption')
     runs-on: ubuntu-latest
     permissions:
       contents: write
