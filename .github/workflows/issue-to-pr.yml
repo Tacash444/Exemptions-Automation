@@ -6,47 +6,61 @@ on:
 
 jobs:
   create-branch-and-pr:
-    if: contains(github.event.issue.labels.*.name, 'constraint') &&
+    # ✅ Run only when BOTH labels are present
+    if: |
+      contains(github.event.issue.labels.*.name, 'constraint') &&
       contains(github.event.issue.labels.*.name, 'exemption')
+
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
+      contents: write          # push new branch
+      pull-requests: write     # open PR
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create new branch and file from issue body
+      #---------------------------------------------
+      # 1. Create branch and commit the issue body
+      #---------------------------------------------
+      - name: Capture issue body in a file and push branch
         env:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
-          BRANCH_NAME="issue-${ISSUE_NUMBER}@
-          git checkout -b "$BRANCH_NAME"
+          set -euo pipefail
 
-          ISSUE_BODY="${{ github.event.issue.body }}"
-          CONSTRAINT_NAME=$(awk '/^### Constraint Name
- 
-          echo "$ISSUE_BODY" | sed 's/r$//' > issue_body.txt
-          # Just echo the body into a file (multiline should be preserved by echo with quote)
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add .
-          git commit -m "Add file for issue #${ISSUE_NUMBER}"
+          BRANCH_NAME="issue-${ISSUE_NUMBER}"
+          git switch -c "$BRANCH_NAME"
+
+          # Save the raw issue body
+          printf '%s\n' "${{ github.event.issue.body }}" > "issue-${ISSUE_NUMBER}.md"
+
+          # Optional: extract the “Constraint Name” line from the markdown
+          CONSTRAINT_NAME=$(grep -A1 '^### Constraint Name' "issue-${ISSUE_NUMBER}.md" | tail -n1 | xargs)
+          echo "Constraint name: $CONSTRAINT_NAME"
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add "issue-${ISSUE_NUMBER}.md"
+          git commit -m "docs: capture body of issue #${ISSUE_NUMBER}"
           git push --set-upstream origin "$BRANCH_NAME"
 
-      - name: Open Pull Request
+      #---------------------------------------------
+      # 2. Open a pull request from that branch
+      #---------------------------------------------
+      - name: Open pull request
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const issueNumber = context.issue.number;
-            const branchName = `issue-${issueNumber}`;
+            const issue = context.issue.number;
+            const branch = `issue-${issue}`;
+
             await github.rest.pulls.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `Issue #${issueNumber} - Auto-generated PR`,
-              head: branchName,
-              base: 'main',
-              body: `This pull request was automatically created from issue #${issueNumber}. The issue body has been committed as 'issue-${issueNumber}.md'.`
+              ...context.repo,
+              title: `Issue #${issue} – auto‑generated PR`,
+              head: branch,
+              base: 'main',          // 🔵  change if your default branch is not 'main'
+              body: `Closes #${issue}\n\nThis PR was created automatically from the issue body.`
             });
