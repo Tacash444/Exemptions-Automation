@@ -115,47 +115,47 @@ body:
         - constraints/compute.storageResourceUseRestrictions – list
         - constraints/compute.trustedImageProjects – list
         - constraints/compute.vmCanIpForward – list
-        constraints/compute.vmExternalIpAccess – list
-        constraints/iap.requireGlobalIapWebDisabled – boolean
-        constraints/container.restrictNoncompliantDiagnosticDataAccess – boolean
-        constraints/dataform.restrictGitRemotes – list
-        constraints/datastream.disablePublicConnectivity – boolean
-        constraints/essentialcontacts.allowedContactDomains – list
-        constraints/essentialcontacts.disableProjectSecurityContacts – boolean
-        constraints/firestore.requireP4SAforImportExport – boolean
-        constraints/gcp.disableCloudLogging – boolean
-        constraints/iam.allowServiceAccountCredentialLifetimeExtension – list
-        constraints/iam.allowedPolicyMemberDomains – list
-        constraints/iam.disableAuditLoggingExemption – boolean
-        constraints/iam.disableCrossProjectServiceAccountUsage – boolean
-        constraints/iam.disableServiceAccountCreation – boolean
-        constraints/iam.disableServiceAccountKeyCreation – boolean
-        constraints/iam.disableServiceAccountKeyUpload – boolean
-        constraints/iam.disableWorkloadIdentityClusterCreation – boolean
-        constraints/iam.serviceAccountKeyExpiryHours – list
-        constraints/iam.serviceAccountKeyExposureResponse – list
-        constraints/iam.workloadIdentityPoolAwsAccounts – list
-        constraints/iam.workloadIdentityPoolProviders – list
-        constraints/iam.automaticIamGrantsForDefaultServiceAccounts – boolean
-        constraints/meshconfig.allowedVpcscModes – list
-        constraints/pubsub.enforceInTransitRegions – boolean
-        constraints/iam.restrictCrossProjectServiceAccountLienRemoval – boolean
-        constraints/resourcemanager.accessBoundaries – list
-        constraints/resourcemanager.allowEnabledServicesForExport – list
-        constraints/resourcemanager.allowedExportDestinations – list
-        constraints/resourcemanager.allowedImportSources – list
-        constraints/run.allowedBinaryAuthorizationPolicies – list
-        constraints/run.allowedIngress – list
-        constraints/run.allowedVPCEgress – list
-        constraints/spanner.assuredWorkloadsAdvancedServiceControls – boolean
-        constraints/spanner.disableMultiRegionInstanceIfNoLocationSelected – boolean
-        constraints/gcp.detailedAuditLoggingMode – boolean
-        constraints/storage.publicAccessPrevention – boolean
-        constraints/storage.restrictAuthTypes – list
-        constraints/storage.retentionPolicySeconds – list
-        constraints/storage.secureHttpTransport – boolean
-        constraints/storage.softDeletePolicySeconds – list
-        constraints/storage.uniformBucketLevelAccess – boolean
+        - constraints/compute.vmExternalIpAccess – list
+        - constraints/iap.requireGlobalIapWebDisabled – boolean
+        - constraints/container.restrictNoncompliantDiagnosticDataAccess – boolean
+        - constraints/dataform.restrictGitRemotes – list
+        - constraints/datastream.disablePublicConnectivity – boolean
+        - constraints/essentialcontacts.allowedContactDomains – list
+        - constraints/essentialcontacts.disableProjectSecurityContacts – boolean
+        - constraints/firestore.requireP4SAforImportExport – boolean
+        - constraints/gcp.disableCloudLogging – boolean
+        - constraints/iam.allowServiceAccountCredentialLifetimeExtension – list
+        - constraints/iam.allowedPolicyMemberDomains – list
+        - constraints/iam.disableAuditLoggingExemption – boolean
+        - constraints/iam.disableCrossProjectServiceAccountUsage – boolean
+        - constraints/iam.disableServiceAccountCreation – boolean
+        - constraints/iam.disableServiceAccountKeyCreation – boolean
+        - constraints/iam.disableServiceAccountKeyUpload – boolean
+        - constraints/iam.disableWorkloadIdentityClusterCreation – boolean
+        - constraints/iam.serviceAccountKeyExpiryHours – list
+        - constraints/iam.serviceAccountKeyExposureResponse – list
+        - constraints/iam.workloadIdentityPoolAwsAccounts – list
+        - constraints/iam.workloadIdentityPoolProviders – list
+        - constraints/iam.automaticIamGrantsForDefaultServiceAccounts – boolean
+        - constraints/meshconfig.allowedVpcscModes – list
+        - constraints/pubsub.enforceInTransitRegions – boolean
+        - constraints/iam.restrictCrossProjectServiceAccountLienRemoval – boolean
+        - constraints/resourcemanager.accessBoundaries – list
+        - constraints/resourcemanager.allowEnabledServicesForExport – list
+        - constraints/resourcemanager.allowedExportDestinations – list
+        - constraints/resourcemanager.allowedImportSources – list
+        - constraints/run.allowedBinaryAuthorizationPolicies – list
+        - constraints/run.allowedIngress – list
+        - constraints/run.allowedVPCEgress – list
+        - constraints/spanner.assuredWorkloadsAdvancedServiceControls – boolean
+        - constraints/spanner.disableMultiRegionInstanceIfNoLocationSelected – boolean
+        - constraints/gcp.detailedAuditLoggingMode – boolean
+        - constraints/storage.publicAccessPrevention – boolean
+        - constraints/storage.restrictAuthTypes – list
+        - constraints/storage.retentionPolicySeconds – list
+        - constraints/storage.secureHttpTransport – boolean
+        - constraints/storage.softDeletePolicySeconds – list
+        - constraints/storage.uniformBucketLevelAccess – boolean
     validations:
       required: true
 
