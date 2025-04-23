@@ -1,7 +1,9 @@
 name: Organization Policy Constraint Request
 description: Request a constraint exemption for organization policies.
 title: "[Constraint]: "
-labels: ["constraint", "exemption"]
+labels:
+  - constraint
+  - exemption
 assignees: []
 
 body:
@@ -10,16 +12,153 @@ body:
       value: |
         **👋 Please fill in the following information about your constraint request clearly.**
         ---
-  
-  - type: input
+  - type: dropdown
     id: constraint_name
     attributes:
       label: Constraint Name
-      description: Enter the full name of the constraint you're applying
-      placeholder: e.g., ainotebooks.restrictPublicIp
+      description: Choose the name of the constraint.
+      options:
+        - Boolean
+        - constraints/compute.managed.restrictProtocolForwardingCreationForTypes – list
+        - constraints/iam.managed.allowedPolicyMembers – list
+        - constraints/iam.managed.disableServiceAccountCreation – boolean
+        - constraints/iam.managed.preventPrivilegedBasicRolesForDefaultServiceAccounts – boolean
+        - constraints/iam.managed.disableServiceAccountKeyCreation – boolean
+        - constraints/iam.managed.disableServiceAccountKeyUpload – boolean
+        - constraints/essentialcontacts.managed.allowedContactDomains – list
+        - constraints/run.managed.requireInvokerIam – boolean
+        - constraints/cloudbuild.allowedWorkerPools – list
+        - constraints/gcp.resourceLocations – list
+        - constraints/gcp.restrictCmekCryptoKeyProjects – list
+        - constraints/gcp.restrictEndpointUsage – list
+        - constraints/gcp.restrictNonCmekServices – list
+        - constraints/gcp.restrictServiceUsage – list
+        - constraints/gcp.restrictTLSVersion – list
+        - constraints/iap.requireRegionalIapWebDisabled – boolean
+        - constraints/serviceuser.services – list
+        - constraints/ainotebooks.accessMode – list
+        - constraints/ainotebooks.disableFileDownloads – boolean
+        - constraints/ainotebooks.disableRootAccess – boolean
+        - constraints/ainotebooks.disableTerminal – boolean
+        - constraints/ainotebooks.environmentOptions – list
+        - constraints/ainotebooks.requireAutoUpgradeSchedule – boolean
+        - constraints/ainotebooks.restrictPublicIp – boolean
+        - constraints/ainotebooks.restrictVpcNetworks – list
+        - constraints/vertexai.allowedGenAIModels – list
+        - constraints/vertexai.allowedModels – list
+        - constraints/appengine.disableCodeDownload – boolean
+        - constraints/appengine.runtimeDeploymentExemption – list
+        - constraints/bigquery.disableBQOmniAWS – boolean
+        - constraints/bigquery.disableBQOmniAzure – boolean
+        - constraints/cloudbuild.allowedIntegrations – list
+        - constraints/cloudbuild.disableCreateDefaultServiceAccount – boolean
+        - constraints/cloudbuild.useBuildServiceAccount – boolean
+        - constraints/cloudbuild.useComputeServiceAccount – boolean
+        - constraints/clouddeploy.disableServiceLabelGeneration – boolean
+        - constraints/cloudfunctions.allowedIngressSettings – list
+        - constraints/cloudfunctions.allowedVpcConnectorEgressSettings – list
+        - constraints/cloudfunctions.requireVPCConnector – boolean
+        - constraints/cloudfunctions.restrictAllowedGenerations – list
+        - constraints/cloudkms.allowedProtectionLevels – list
+        - constraints/cloudkms.disableBeforeDestroy – boolean
+        - constraints/cloudkms.minimumDestroyScheduledDuration – list
+        - constraints/cloudscheduler.allowedTargetTypes – list
+        - constraints/sql.restrictAuthorizedNetworks – boolean
+        - constraints/sql.restrictNoncompliantDiagnosticDataAccess – boolean
+        - constraints/sql.restrictNoncompliantResourceCreation – boolean
+        - constraints/sql.restrictPublicIp – boolean
+        - constraints/commerceorggovernance.disablePublicMarketplace – boolean
+        - constraints/commerceorggovernance.marketplaceServices – list
+        - constraints/compute.allowedVlanAttachmentEncryption – list
+        - constraints/compute.disableAllIpv6 – boolean
+        - constraints/compute.disableGlobalCloudArmorPolicy – boolean
+        - constraints/compute.disableGlobalLoadBalancing – boolean
+        - constraints/compute.disableGlobalSelfManagedSslCertificate – boolean
+        - constraints/compute.disableGlobalSerialPortAccess – boolean
+        - constraints/compute.disableGuestAttributesAccess – boolean
+        - constraints/compute.disableHybridCloudIpv6 – boolean
+        - constraints/compute.disableInstanceDataAccessApis – boolean
+        - constraints/compute.disableInternetNetworkEndpointGroup – boolean
+        - constraints/compute.disableNestedVirtualization – boolean
+        - constraints/compute.disableNonFIPSMachineTypes – boolean
+        - constraints/compute.disablePrivateServiceConnectCreationForConsumers – list
+        - constraints/compute.disableSerialPortAccess – boolean
+        - constraints/compute.disableSerialPortLogging – boolean
+        - constraints/compute.disableSshInBrowser – boolean
+        - constraints/compute.disableVpcExternalIpv6 – boolean
+        - constraints/compute.disableVpcInternalIpv6 – boolean
+        - constraints/compute.enableComplianceMemoryProtection – boolean
+        - constraints/compute.requireBasicQuotaInResponse – boolean
+        - constraints/compute.requireOsConfig – boolean
+        - constraints/compute.requireOsLogin – boolean
+        - constraints/compute.requireShieldedVm – boolean
+        - constraints/compute.requireSslPolicy – list
+        - constraints/compute.requireVpcFlowLogs – list
+        - constraints/compute.restrictCloudNATUsage – list
+        - constraints/compute.restrictCrossProjectServices – list
+        - constraints/compute.restrictDedicatedInterconnectUsage – list
+        - constraints/compute.restrictLoadBalancerCreationForTypes – list
+        - constraints/compute.restrictNonConfidentialComputing – list
+        - constraints/compute.restrictPartnerInterconnectUsage – list
+        - constraints/compute.restrictPrivateServiceConnectConsumer – list
+        - constraints/compute.restrictPrivateServiceConnectProducer – list
+        - constraints/compute.restrictProtocolForwardingCreationForTypes – list
+        - constraints/compute.restrictSharedVpcBackendServices – list
+        - constraints/compute.restrictSharedVpcHostProjects – list
+        - constraints/compute.restrictSharedVpcSubnetworks – list
+        - constraints/compute.restrictVpcPeering – list
+        - constraints/compute.restrictVpnPeerIPs – list
+        - constraints/compute.restrictXpnProjectLienRemoval – boolean
+        - constraints/compute.setNewProjectDefaultToZonalDNSOnly – boolean
+        - constraints/compute.sharedReservationsOwnerProjects – list
+        - constraints/compute.skipDefaultNetworkCreation – boolean
+        - constraints/compute.storageResourceUseRestrictions – list
+        - constraints/compute.trustedImageProjects – list
+        - constraints/compute.vmCanIpForward – list
+        - constraints/compute.vmExternalIpAccess – list
+        - constraints/iap.requireGlobalIapWebDisabled – boolean
+        - constraints/container.restrictNoncompliantDiagnosticDataAccess – boolean
+        - constraints/dataform.restrictGitRemotes – list
+        - constraints/datastream.disablePublicConnectivity – boolean
+        - constraints/essentialcontacts.allowedContactDomains – list
+        - constraints/essentialcontacts.disableProjectSecurityContacts – boolean
+        - constraints/firestore.requireP4SAforImportExport – boolean
+        - constraints/gcp.disableCloudLogging – boolean
+        - constraints/iam.allowServiceAccountCredentialLifetimeExtension – list
+        - constraints/iam.allowedPolicyMemberDomains – list
+        - constraints/iam.disableAuditLoggingExemption – boolean
+        - constraints/iam.disableCrossProjectServiceAccountUsage – boolean
+        - constraints/iam.disableServiceAccountCreation – boolean
+        - constraints/iam.disableServiceAccountKeyCreation – boolean
+        - constraints/iam.disableServiceAccountKeyUpload – boolean
+        - constraints/iam.disableWorkloadIdentityClusterCreation – boolean
+        - constraints/iam.serviceAccountKeyExpiryHours – list
+        - constraints/iam.serviceAccountKeyExposureResponse – list
+        - constraints/iam.workloadIdentityPoolAwsAccounts – list
+        - constraints/iam.workloadIdentityPoolProviders – list
+        - constraints/iam.automaticIamGrantsForDefaultServiceAccounts – boolean
+        - constraints/meshconfig.allowedVpcscModes – list
+        - constraints/pubsub.enforceInTransitRegions – boolean
+        - constraints/iam.restrictCrossProjectServiceAccountLienRemoval – boolean
+        - constraints/resourcemanager.accessBoundaries – list
+        - constraints/resourcemanager.allowEnabledServicesForExport – list
+        - constraints/resourcemanager.allowedExportDestinations – list
+        - constraints/resourcemanager.allowedImportSources – list
+        - constraints/run.allowedBinaryAuthorizationPolicies – list
+        - constraints/run.allowedIngress – list
+        - constraints/run.allowedVPCEgress – list
+        - constraints/spanner.assuredWorkloadsAdvancedServiceControls – boolean
+        - constraints/spanner.disableMultiRegionInstanceIfNoLocationSelected – boolean
+        - constraints/gcp.detailedAuditLoggingMode – boolean
+        - constraints/storage.publicAccessPrevention – boolean
+        - constraints/storage.restrictAuthTypes – list
+        - constraints/storage.retentionPolicySeconds – list
+        - constraints/storage.secureHttpTransport – boolean
+        - constraints/storage.softDeletePolicySeconds – list
+        - constraints/storage.uniformBucketLevelAccess – boolean
     validations:
       required: true
-  
+
   - type: dropdown
     id: constraint_type
     attributes:

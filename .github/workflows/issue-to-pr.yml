@@ -6,43 +6,62 @@ on:
 
 jobs:
   create-branch-and-pr:
+    if: |
+      contains(github.event.issue.labels.*.name, 'constraint') &&
+      contains(github.event.issue.labels.*.name, 'exemption')
+
     runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Create new branch and file from issue body
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install --quiet pyyaml
+
+      - name: Create branch & save issue body
         env:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_BODY:   ${{ github.event.issue.body }}
         run: |
-          BRANCH_NAME="issue-${ISSUE_NUMBER}"
-          git checkout -b "$BRANCH_NAME"
+          BRANCH="issue-${ISSUE_NUMBER}"
+          git switch -c "$BRANCH"
+          mkdir -p tmp
+          printf '%s\n' "$ISSUE_BODY" > tmp/body.md
 
-          # Just echo the body into a file (multiline should be preserved by echo with quotes)
-          echo "${{ github.event.issue.body }}" > issue_body.yaml
+      - name: Generate policy file
+        run: |
+          python "1 - YAML LZ Configuration/OrgPolicyConstraints/output.py" \
+                 tmp/body.md \
+                 "1 - YAML LZ Configuration"
 
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add .
-          git commit -m "Add file for issue #${ISSUE_NUMBER}"
-          git push --set-upstream origin "$BRANCH_NAME"
+      - name: Commit & push
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          BRANCH: issue-${{ github.event.issue.number }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tmp/body.md "1 - YAML LZ Configuration/policies/"
+          git commit -m "feat: policy from issue #${ISSUE_NUMBER}" || echo "Nothing to commit"
+          git push --set-upstream origin "$BRANCH"
 
-      - name: Open Pull Request
+      - name: Open pull request
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const issueNumber = context.issue.number;
-            const branchName = `issue-${issueNumber}`;
+            const n   = context.issue.number;
+            const ref = `issue-${n}`;
             await github.rest.pulls.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `Issue #${issueNumber} - Auto-generated PR`,
-              head: branchName,
+              ...context.repo,
+              title: `Issue #${n} – auto-generated policy`,
+              head: ref,
               base: 'main',
-              body: `This pull request was automatically created from issue #${issueNumber}. The issue body has been committed as 'issue-${issueNumber}.md'.`
+              body: `Closes #${n}\n\nPolicy generated automatically from the issue form.`
             });
