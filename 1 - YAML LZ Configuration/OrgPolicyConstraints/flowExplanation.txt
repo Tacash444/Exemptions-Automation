@@ -1,0 +1,1 @@
+The actual convertion to string is via a toString method in the class. And the writing to a file is via a method that writes the file in automation.py
