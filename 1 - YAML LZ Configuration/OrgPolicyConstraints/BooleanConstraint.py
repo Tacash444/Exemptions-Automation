@@ -1,3 +1,5 @@
+#A Boolean Constraint class.
+
 from Constraint import Constraint
 
 class BooleanConstraint(Constraint):
