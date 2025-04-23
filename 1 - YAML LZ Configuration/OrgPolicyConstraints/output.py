@@ -1,67 +1,43 @@
-name: Create Branch and PR on Issue
+from MainMethods import createConstraintAtPath
+import sys
+from typing import Dict
+import re
 
-on:
-  issues:
-    types: [opened]
+HEADING_RE = re.compile(r"^###\s+(.*)$")
 
-jobs:
-  create-branch-and-pr:
-    if: |
-      contains(github.event.issue.labels.*.name, 'constraint') &&
-      contains(github.event.issue.labels.*.name, 'exemption')
+def parse_issue_markdown(text: str) -> Dict[str, str | None]:
+    lines = text.splitlines()
+    data: Dict[str, str | None] = {}
 
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
+    current_key = None
+    buffer = []
 
-    steps:
-      - uses: actions/checkout@v4
+    def flush():
+        nonlocal buffer, current_key
+        if current_key is not None:
+            value = "\n".join(buffer).strip()
+            # Treat GitHub's _No response_ (or empty) as None
+            if value == "" or value.lower() == "_no response_":
+                value = None
+            data[current_key] = value
+        buffer = []
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+    for line in lines:
+        m = HEADING_RE.match(line)
+        if m:
+            flush()
+            current_key = m.group(1).strip()
+        else:
+            # Collect content lines until next heading
+            buffer.append(line)
+    flush()  # last block
+    return data
 
-      - run: pip install --quiet pyyaml
+if __name__ == "__main__":
+    issue_body_path = sys.argv[1]             # e.g., tmp/body.md
+    
+    with open(issue_body_path, 'r') as f:
+        body = f.read()
 
-      - name: Create branch & save issue body
-        env:
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-          ISSUE_BODY:   ${{ github.event.issue.body }}
-        run: |
-          BRANCH="issue-${ISSUE_NUMBER}"
-          git switch -c "$BRANCH"
-          mkdir -p tmp
-          printf '%s\n' "$ISSUE_BODY" > tmp/body.md
-
-      - name: Generate policy file
-        run: |
-          python "1 - YAML LZ Configuration/OrgPolicyConstraints/output.py" \
-                 tmp/body.md \
-                 "1 - YAML LZ Configuration"
-
-      - name: Commit & push
-        env:
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-          BRANCH: issue-${{ github.event.issue.number }}
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tmp/body.md "1 - YAML LZ Configuration/policies/"
-          git commit -m "feat: policy from issue #${ISSUE_NUMBER}" || echo "Nothing to commit"
-          git push --set-upstream origin "$BRANCH"
-
-      - name: Open pull request
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const n   = context.issue.number;
-            const ref = `issue-${n}`;
-            await github.rest.pulls.create({
-              ...context.repo,
-              title: `Issue #${n} – auto-generated policy`,
-              head: ref,
-              base: 'main',
-              body: `Closes #${n}\n\nPolicy generated automatically from the issue form.`
-            });
+    constraint_data = parse_issue_markdown(body)
+    createConstraintAtPath("/check", "checking", constraint_data)
