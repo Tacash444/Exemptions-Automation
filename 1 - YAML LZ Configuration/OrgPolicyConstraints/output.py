@@ -66,6 +66,7 @@ def main(body_path: str, out_dir: str) -> None:
 
     os.makedirs(out_dir, exist_ok=True)
     log.info("Output directory ensured: %s", out_dir)
+    log.info("Filename ensured: %s", file_stem)
 
     content = make_plain_text(parsed)
     createConstraintAtPath(out_dir, file_stem, content)
