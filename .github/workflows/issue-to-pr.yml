@@ -1,3 +1,4 @@
+# .github/workflows/create-branch-pr.yml
 name: Create Branch and PR on Issue
 
 on:
@@ -6,7 +7,7 @@ on:
 
 jobs:
   create-branch-and-pr:
-    # ✅ Run only when BOTH labels are present
+    # Run only when BOTH labels are present
     if: |
       contains(github.event.issue.labels.*.name, 'constraint') &&
       contains(github.event.issue.labels.*.name, 'exemption')
@@ -17,50 +18,79 @@ jobs:
       pull-requests: write     # open PR
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    #------------------------------------------------
+    # 0. Checkout repo
+    #------------------------------------------------
+    - uses: actions/checkout@v4
 
-      #---------------------------------------------
-      # 1. Create branch and commit the issue body
-      #---------------------------------------------
-      - name: Capture issue body in a file and push branch
-        env:
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-        run: |
-          set -euo pipefail
+    #------------------------------------------------
+    # 1. Set up Python (3.11) + deps (PyYAML)
+    #------------------------------------------------
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
 
-          BRANCH_NAME="issue-${ISSUE_NUMBER}"
-          git switch -c "$BRANCH_NAME"
+    - name: Install Python deps
+      run: |
+        pip install --quiet pyyaml
 
-          # Save the raw issue body
-          printf '%s\n' "${{ github.event.issue.body }}" > "issue-${ISSUE_NUMBER}.md"
+    #------------------------------------------------
+    # 2. Create branch and write issue body to file
+    #------------------------------------------------
+    - name: Create branch & save issue body
+      env:
+        ISSUE_NUMBER: ${{ github.event.issue.number }}
+        ISSUE_BODY:   ${{ github.event.issue.body }}
+      run: |
+        set -euo pipefail
 
-          # Optional: extract the “Constraint Name” line from the markdown
-          CONSTRAINT_NAME=$(grep -A1 '^### Constraint Name' "issue-${ISSUE_NUMBER}.md" | tail -n1 | xargs)
-          echo "Constraint name: $CONSTRAINT_NAME"
+        BRANCH="issue-${ISSUE_NUMBER}"
+        git switch -c "$BRANCH"
 
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        mkdir -p tmp
+        printf '%s\n' "$ISSUE_BODY" > "tmp/body.md"
 
-          git add "issue-${ISSUE_NUMBER}.md"
-          git commit -m "docs: capture body of issue #${ISSUE_NUMBER}"
-          git push --set-upstream origin "$BRANCH_NAME"
+    #------------------------------------------------
+    # 3. Generate YAML / TF from Python script
+    #------------------------------------------------
+    - name: Generate policy file
+      env:
+        ISSUE_NUMBER: ${{ github.event.issue.number }}
+      run: |
+        # 🔵 adjust path/to/your/script if needed
+        python tools/generate_policy.py tmp/body.md policies/
 
-      #---------------------------------------------
-      # 2. Open a pull request from that branch
-      #---------------------------------------------
-      - name: Open pull request
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const issue = context.issue.number;
-            const branch = `issue-${issue}`;
+    #------------------------------------------------
+    # 4. Commit & push branch
+    #------------------------------------------------
+    - name: Commit generated files
+      env:
+        ISSUE_NUMBER: ${{ github.event.issue.number }}
+        BRANCH: issue-${{ github.event.issue.number }}
+      run: |
+        git config user.name  "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-            await github.rest.pulls.create({
-              ...context.repo,
-              title: `Issue #${issue} – auto‑generated PR`,
-              head: branch,
-              base: 'main',          // 🔵  change if your default branch is not 'main'
-              body: `Closes #${issue}\n\nThis PR was created automatically from the issue body.`
-            });
+        # Add both the markdown and anything new inside policies/
+        git add tmp/body.md policies/
+        git commit -m "feat: auto-generated policy from issue #${ISSUE_NUMBER}" || echo "Nothing to commit"
+        git push --set-upstream origin "$BRANCH"
+
+    #------------------------------------------------
+    # 5. Open Pull Request
+    #------------------------------------------------
+    - name: Open pull request
+      uses: actions/github-script@v7
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const issue = context.issue.number;
+          const branch = `issue-${issue}`;
+
+          await github.rest.pulls.create({
+            ...context.repo,
+            title: `Issue #${issue} – auto-generated policy`,
+            head: branch,
+            base: 'main',           // 🔵 change if default branch ≠ main
+            body: `Closes #${issue}\n\nPolicy generated by \`tools/generate_policy.py\`.`
+          });
