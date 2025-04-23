@@ -40,4 +40,4 @@ if __name__ == "__main__":
         body = f.read()
 
     constraint_data = parse_issue_markdown(body)
-    createConstraintAtPath("/check", "checking", constraint_data)
+    createConstraintAtPath("./check", "checking", constraint_data)
