@@ -13,7 +13,7 @@ import sys
 import re
 import logging
 from typing import Dict, Optional
-from MainMethods import createConstraintAtPath
+from MainMethods import createConstraintAtPath, createYamlFileAtPath
 
 # ---------- Logging ---------- #
 logging.basicConfig(level=logging.INFO, format="%(levelname)s | %(message)s")
@@ -71,7 +71,9 @@ def main(body_path: str, out_dir: str) -> None:
     log.info("Filename ensured: %s", file_stem)
 
     content = make_plain_text(parsed)
-    createConstraintAtPath(out_dir, file_stem, content)
+    #createConstraintAtPath(out_dir, file_stem, content)
+    createYamlFileAtPath(out_dir, "NAME", "WAWAWA")
+    
 
     out_file = os.path.join(out_dir, f"{file_stem}.yaml")
     if os.path.isfile(out_file):
