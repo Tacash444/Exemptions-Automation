@@ -60,6 +60,8 @@ def main(body_path: str, out_dir: str) -> None:
 
     parsed = parse_issue_markdown(body)
     log.info("Parsed headings: %s", list(parsed.keys()))
+    log.info("Parsed values: %s", list(parsed.values()))
+
 
     file_stem = (parsed.get("Constraint Name") or "unnamed_constraint") \
                   .replace("/", "_").replace(" ", "_")
