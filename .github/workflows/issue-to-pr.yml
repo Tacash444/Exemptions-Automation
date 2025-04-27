@@ -38,7 +38,7 @@ jobs:
         run: |
           python "1 - YAML LZ Configuration/OrgPolicyConstraints/output.py" \
                  tmp/body.md \
-                 "1 - YAML LZ Configuration"
+                 "1 - YAML LZ Configuration/policies"
 
       - name: Commit & push
         env:
