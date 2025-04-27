@@ -72,9 +72,7 @@ def main(body_path: str, out_dir: str) -> None:
 
     content = make_plain_text(parsed)
     #createConstraintAtPath(out_dir, file_stem, content)
-    #try
-    createYamlFileAtPath(out_dir, "NAME", "WAWAWA")
-    
+    createYamlFileAtPath(out_dir, "name", "content")
 
     out_file = os.path.join(out_dir, f"{file_stem}.yaml")
     if os.path.isfile(out_file):
