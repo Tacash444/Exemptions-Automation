@@ -13,7 +13,7 @@ import sys
 import re
 import logging
 from typing import Dict, Optional
-from MainMethods import createConstraintAtPath, createYamlFileAtPath
+from MainMethods import createConstraintAtPath
 from BooleanConstraint import BooleanConstraint
 from ListConstraint import ListConstraint
 
@@ -88,7 +88,7 @@ def main(body_path: str, out_dir: str) -> None:
     else: 
         constraint = issueToListConstraint(parsedDict)
 
-    createYamlFileAtPath(out_dir, file_stem, constraint)
+    createConstraintAtPath(out_dir, file_stem, str(constraint))
 
     out_file = os.path.join(out_dir, f"{file_stem}.yaml")
     if os.path.isfile(out_file):
