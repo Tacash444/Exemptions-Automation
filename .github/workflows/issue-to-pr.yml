@@ -39,6 +39,8 @@ jobs:
           python "1 - YAML LZ Configuration/OrgPolicyConstraints/output.py" \
                  tmp/body.md \
                  "./"
+      - name: Show what files exist (debug)
+        run: ls -1a
 
       - name: Commit & push
         env:
