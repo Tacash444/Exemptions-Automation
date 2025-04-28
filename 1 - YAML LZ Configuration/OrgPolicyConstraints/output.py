@@ -71,6 +71,7 @@ def main(body_path: str, out_dir: str) -> None:
     log.info("Filename ensured: %s", file_stem)
 
     content = make_plain_text(parsed)
+    log.info(content)
     #createConstraintAtPath(out_dir, file_stem, content)
     createYamlFileAtPath(out_dir, file_stem, content)
     
