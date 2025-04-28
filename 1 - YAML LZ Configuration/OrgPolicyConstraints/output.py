@@ -14,6 +14,8 @@ import re
 import logging
 from typing import Dict, Optional
 from MainMethods import createConstraintAtPath, createYamlFileAtPath
+from BooleanConstraint import BooleanConstraint
+from ListConstraint import ListConstraint
 
 # ---------- Logging ---------- #
 logging.basicConfig(level=logging.INFO, format="%(levelname)s | %(message)s")
@@ -45,6 +47,12 @@ def parse_issue_markdown(text: str) -> Dict[str, Optional[str]]:
     flush()
     return data
 
+def issueToBooleanConstraint(d: Dict[str, Optional[str]]) -> BooleanConstraint:
+    return BooleanConstraint(d["Constraint Name"])
+
+def issueToListConstraint(d: Dict[str, Optional[str]]) -> ListConstraint:
+    return ListConstraint(d["Constraint Name"], d["Access Decision"], True, d["Specific Values"])
+
 def make_plain_text(d: Dict[str, Optional[str]]) -> str:
     """Turn dict into simple key: value lines."""
     lines = []
@@ -58,23 +66,29 @@ def main(body_path: str, out_dir: str) -> None:
     with open(body_path, "r", encoding="utf-8") as f:
         body = f.read()
 
-    parsed = parse_issue_markdown(body)
-    log.info("Parsed headings: %s", list(parsed.keys()))
-    log.info("Parsed values: %s", list(parsed.values()))
+    parsedDict = parse_issue_markdown(body)
+    log.info("parsedDict headings: %s", list(parsedDict.keys()))
+    log.info("parsedDict values: %s", list(parsedDict.values()))
 
 
-    file_stem = (parsed.get("Constraint Name") or "unnamed_constraint") \
+    file_stem = (parsedDict.get("Constraint Name") or "unnamed_constraint") \
                   .replace("/", "_").replace(" ", "_")
 
     os.makedirs(out_dir, exist_ok=True)
     log.info("Output directory ensured: %s", out_dir)
     log.info("Filename ensured: %s", file_stem)
 
-    content = make_plain_text(parsed)
+    content = make_plain_text(parsedDict)
     log.info(content)
-    #createConstraintAtPath(out_dir, file_stem, content)
-    createYamlFileAtPath(out_dir, file_stem, content)
     
+    #createConstraintAtPath(out_dir, file_stem, content)
+
+    if parsedDict["Constraint Type"] == "Boolean":
+        constraint = issueToBooleanConstraint(parsedDict)
+    else: 
+        constraint = issueToListConstraint(parsedDict)
+
+    createYamlFileAtPath(out_dir, file_stem, constraint)
 
     out_file = os.path.join(out_dir, f"{file_stem}.yaml")
     if os.path.isfile(out_file):
