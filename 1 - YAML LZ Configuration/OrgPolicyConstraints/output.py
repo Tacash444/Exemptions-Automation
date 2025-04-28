@@ -87,8 +87,6 @@ def main(body_path: str, out_dir: str) -> None:
     content = make_plain_text(parsedDict)
     log.info(content)
     
-    #createConstraintAtPath(out_dir, file_stem, content)
-
     if parsedDict["Constraint Type"] == "Boolean":
         constraint = issueToBooleanConstraint(parsedDict)
     else: 
