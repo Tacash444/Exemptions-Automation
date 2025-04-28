@@ -1,18 +1,18 @@
 ### Constraint Name
 
-Boolean
+constraints/iam.managed.allowedPolicyMembers – list
 
 ### Constraint Type
 
-Boolean
+List
 
 ### Access Decision (List Constraints Only)
 
-None
+Allow
 
 ### Apply to All or Specific Values? (List Constraints Only)
 
-None
+All Values
 
 ### Specific Values (if applicable)
 
@@ -20,4 +20,4 @@ _No response_
 
 ### Reason for Constraint Request
 
-OOOhhhhhh
+To live
