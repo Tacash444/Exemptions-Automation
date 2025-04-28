@@ -16,6 +16,7 @@ from typing import Dict, Optional
 from MainMethods import createConstraintAtPath
 from BooleanConstraint import BooleanConstraint
 from ListConstraint import ListConstraint
+from AccessDecisionEnum import AccessDecisionEnum
 
 # ---------- Logging ---------- #
 logging.basicConfig(level=logging.INFO, format="%(levelname)s | %(message)s")
@@ -51,7 +52,12 @@ def issueToBooleanConstraint(d: Dict[str, Optional[str]]) -> BooleanConstraint:
     return BooleanConstraint(d["Constraint Name"])
 
 def issueToListConstraint(d: Dict[str, Optional[str]]) -> ListConstraint:
-    return ListConstraint(d["Constraint Name"], d["Access Decision"], True, d["Specific Values"])
+    accessDecisionStr = d["Access Decision (List Constraints Only)"]
+    accessDecision = AccessDecisionEnum.ALLOW
+    if accessDecisionStr and accessDecisionStr.lower() == "deny":
+        accessDecision = AccessDecisionEnum.DENY
+
+    return ListConstraint(d["Constraint Name"], accessDecision, True)
 
 def make_plain_text(d: Dict[str, Optional[str]]) -> str:
     """Turn dict into simple key: value lines."""
@@ -94,7 +100,7 @@ def main(body_path: str, out_dir: str) -> None:
     if os.path.isfile(out_file):
         log.info("✅ File written: %s", out_file)
     else:
-        log.warning("⚠️  File not found after createConstraintAtPath – continuing anyway")
+        log.warning("⚠️ File not found after createConstraintAtPath – continuing anyway")
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
