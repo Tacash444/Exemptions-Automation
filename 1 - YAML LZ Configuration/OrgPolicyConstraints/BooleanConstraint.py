@@ -7,6 +7,6 @@ class BooleanConstraint(Constraint):
         super().__init__(name)
     
     def __str__(self):
-        return (f"{self.name}:\n" +
+        return (f"{self.name}:\n"+
                 "  rules:\n" + 
                 "   - enforce: true")
