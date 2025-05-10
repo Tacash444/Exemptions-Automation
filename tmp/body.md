@@ -1,6 +1,6 @@
 ### Constraint Name
 
-Boolean
+constraints/iam.managed.disableServiceAccountKeyCreation – boolean
 
 ### Constraint Type
 
@@ -20,4 +20,4 @@ _No response_
 
 ### Reason for Constraint Request
 
-OOOhhhhhh
+Why is it like that
